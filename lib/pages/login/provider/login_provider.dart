@@ -17,8 +17,8 @@ class LoginProvider extends BaseBloc {
         (route) => false);
   }
 
-  checkPhoneNumber(String value) {
-    if (value.length == 12) {
+  checkPhoneNumber() {
+    if (phoneController.text.length == 10) {
       isButtonEnabled = true;
       notifyListeners();
     } else {

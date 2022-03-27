@@ -30,6 +30,8 @@ class AppColors {
   // static const Color whatsAppColor = Color(0xff55CB6D);
   static const Color whatsAppColor = Color(0xff25D366);
   static const Color telegramColor = Color(0xff0088CC);
+  static const Color greyColor = Color(0xffF5F5F5);
+  
 }
 
 class AppSvgImages {
@@ -37,56 +39,30 @@ class AppSvgImages {
   static const String onboarding_1 = "assets/images/svg/splash_1.svg";
   static const String onboarding_2 = "assets/images/svg/onboarding_2.svg";
   static const String onboarding_3 = "assets/images/svg/onboarding_3.svg";
+  static const String logo = "assets/images/svg/logo.svg";
+  static const String home_ic = "assets/images/svg/home.svg";
+  static const String archive_ic = "assets/images/svg/archive.svg";
+  static const String help_ic = "assets/images/svg/help.svg";
+  static const String notes_ic = "assets/images/svg/notes.svg";
+  static const String person_ic = "assets/images/svg/person.svg";
+  static const String event_1 = "assets/images/svg/event_1.svg";
+  static const String arrow_down = "assets/images/svg/arrow_down.svg";
+  static const String download_ic = "assets/images/svg/download.svg";
+  static const String plus_ic = "assets/images/svg/plus.svg";
+  static const String minus_ic = "assets/images/svg/minus.svg";
 
   static const String bottom_design = "assets/images/svg/bottom_design.svg";
   static const String bottom = "assets/images/png/bottom.png";
   static const String bottom_design_png =
       "assets/images/png/bottom_design_png.png";
+}
 
-  static const String zhurek_ic = 'assets/images/svg/zhurek.svg';
-  static const String avatar_ic = 'assets/images/svg/avatar.svg';
-  static const String dotted_line_ic = 'assets/images/svg/dotted_line.svg';
-  static const String redirect_profile_ic =
-      'assets/images/svg/redirect_profile.svg';
-  static const String logout_ic = 'assets/images/svg/logout.svg';
-  static const String arrow_right_ic = 'assets/images/svg/arrow_right.svg';
-  static const String arrow_left_ic = 'assets/images/svg/ic_back.svg';
-  static const String chosen_ic = 'assets/images/svg/chosen.svg';
-  static const String unchosen_ic = 'assets/images/svg/unchosen.svg';
-  static const String from_button_ic = 'assets/images/svg/from_button.svg';
-  static const String to_button_ic = 'assets/images/svg/to_button.svg';
-  static const String from_to_line_ic = 'assets/images/svg/from_to_line.svg';
-  static const String x_ic = 'assets/images/svg/x.svg';
-  static const String star_ic = 'assets/images/svg/star.svg';
-  static const String delete_ic = 'assets/images/svg/delete.svg';
-  static const String calendar_ic = 'assets/images/svg/calendar.svg';
-
-  // static const String star_ic = 'assets/icons/svg/star.svg';
-  static const String whatsapp_ic = 'assets/icons/png/wpp_logo.png';
-  static const String telegram_ic = 'assets/icons/svg/telega_logo.svg';
-  static const String instagram_ic = 'assets/icons/svg/insta_logo.svg';
-
-  static const String minus_enabled_ic = 'assets/images/svg/minus_enabled.svg';
-  static const String minus_unabled_ic = 'assets/images/svg/minus_unabled.svg';
-  static const String plus_ic = 'assets/images/svg/plus.svg';
-  static const String switch_on_ic = 'assets/images/svg/switch_on.svg';
-  static const String switch_off_ic = 'assets/images/svg/switch_off.svg';
-  static const String golden_star_ic = 'assets/images/svg/golden_star.svg';
-  static const String filter_ic = 'assets/images/svg/filter.svg';
-  static const String tuda_suda_ic = 'assets/images/svg/tuda_suda.svg';
-  static const String search_filter_ic = 'assets/images/svg/search_filter.svg';
-  static const String x_in_circle_ic = 'assets/images/svg/x_in_circle.svg';
-  static const String departure_date_ic =
-      'assets/images/svg/departure_date.svg';
-  static const String how_many_nights_ic =
-      'assets/images/svg/how_many_nights.svg';
-  static const String plane_ic = 'assets/images/svg/plane.svg';
-  static const String insurance_ic = 'assets/images/svg/insurance.svg';
-  static const String bus_ic = 'assets/images/svg/bus.svg';
-  static const String nutrition_ic = 'assets/images/svg/nutrition.svg';
-  static const String divan_ic = 'assets/images/svg/divan.svg';
-//>>>>>>> d165f36d0bf034424e9267fa4b8aaca206766733
-
-  ///[_NavBar]
+class AppPngImages {
+  static const String event_1 = "assets/images/png/event_1.png";
+  static const String event_2 = "assets/images/png/event_2.png";
+  static const String event_3 = "assets/images/png/event_3.png";
+  static const String event_4 = "assets/images/png/event_4.png";
+  static const String event_5 = "assets/images/png/event_5.png";
+  static const String workout = "assets/images/png/workout.png";
 
 }

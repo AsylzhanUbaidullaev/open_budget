@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:open_budget/base/base_bloc.dart';
+import 'package:open_budget/pages/index/ui/index_page.dart';
 import 'package:open_budget/pages/onboarding/ui/onboarding.dart';
 
 import 'user_data.dart';
@@ -44,6 +45,6 @@ class MyAppModel extends BaseBloc {
 
   Widget getHomeScreen() {
     // log("isAuthed: $isAuthenticated");
-    return Onboarding();
+    return IndexPage();
   }
 }

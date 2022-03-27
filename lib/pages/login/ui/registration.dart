@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/formatters/masked_input_formatter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:open_budget/base/base_provider.dart';
 import 'package:open_budget/pages/login/provider/registration_provider.dart';
 import 'package:open_budget/shared/size_config.dart';
@@ -9,6 +10,8 @@ import 'package:open_budget/shared/ui_helper.dart';
 import 'package:open_budget/shared/utils.dart';
 import 'package:open_budget/widgets/custom_container.dart';
 import 'package:open_budget/widgets/default_button.dart';
+
+import '../../index/ui/index_page.dart';
 
 class Registration extends StatelessWidget {
   const Registration({Key? key}) : super(key: key);
@@ -92,6 +95,11 @@ class Registration extends StatelessWidget {
                                     onChanged: (String value) {
                                       // model.checkPassword(value);
                                     },
+                                    inputFormatters: [
+                                      MaskTextInputFormatter(
+                                          mask: '(###) ###-##-##',
+                                          filter: {"#": RegExp(r'[0-9]')}),
+                                    ],
                                     keyboardType: TextInputType.visiblePassword,
                                     obscureText: false,
                                     cursorColor: AppColors.systemBlackColor,
@@ -206,7 +214,7 @@ class Registration extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Spacer(),
+                              const Spacer(),
                               Padding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal:
@@ -220,6 +228,11 @@ class Registration extends StatelessWidget {
                                   press: model.isButtonEnabled
                                       ? () {
                                           // model.toVerification(context);
+                                          Navigator.pushAndRemoveUntil(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (_) => IndexPage()),
+                                              (route) => false);
                                         }
                                       : () {
                                           showCustomToast(

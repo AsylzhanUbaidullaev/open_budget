@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/formatters/masked_input_formatter.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:open_budget/base/base_provider.dart';
 import 'package:open_budget/pages/login/provider/login_provider.dart';
 import 'package:open_budget/shared/theme.dart';
@@ -90,13 +93,16 @@ class Login extends StatelessWidget {
                                 child: CustomContainer(
                                   child: TextField(
                                     controller: model.phoneController,
-                                    onChanged: (String value) {
-                                      model.checkPhoneNumber(value);
+                                    onTap: () {},
+                                    onEditingComplete: () {
+                                      model.checkPhoneNumber();
                                     },
                                     keyboardType: TextInputType.number,
                                     cursorColor: AppColors.systemBlackColor,
                                     inputFormatters: [
-                                      MaskedInputFormatter('000 000 0000'),
+                                      MaskTextInputFormatter(
+                                          mask: '(###) ###-##-##',
+                                          filter: {"#": RegExp(r'[0-9]')}),
                                     ],
                                     decoration: const InputDecoration(
                                       prefixIcon: Padding(
@@ -157,7 +163,7 @@ class Login extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Spacer(),
+                              const Spacer(),
                               Padding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal:
