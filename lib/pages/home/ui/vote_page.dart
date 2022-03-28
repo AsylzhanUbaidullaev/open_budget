@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:open_budget/shared/size_config.dart';
@@ -5,8 +7,31 @@ import 'package:open_budget/shared/theme.dart';
 import 'package:open_budget/widgets/dash_divider.dart';
 import 'package:open_budget/widgets/default_text.dart';
 
-class VotePage extends StatelessWidget {
+class VotePage extends StatefulWidget {
   const VotePage({Key? key}) : super(key: key);
+
+  @override
+  State<VotePage> createState() => _VotePageState();
+}
+
+class _VotePageState extends State<VotePage> {
+  String year = '2019';
+  String district = 'Nauryzbay district';
+  List<String> years = [
+    '2019',
+    '2020',
+    '2021',
+  ];
+  List<String> districts = [
+    'Nauryzbay district',
+    'Alatau district',
+    'Zhetysu district',
+    'Almaly district',
+    'Bostandyk district',
+    'Medeu district',
+    'Auezov district',
+    'Turksib district',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -57,28 +82,29 @@ class VotePage extends StatelessWidget {
                           color: AppColors.greyColor,
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            DefaultText(
-                              text: '2020',
-                              fontSize: 36,
-                            ),
-                            SvgPicture.asset(
-                              AppSvgImages.arrow_down,
-                              width: getProportionateScreenWidth(20),
-                            ),
-                          ],
+                        child: DropdownButton(
+                          value: year,
+                          items: years
+                              .map(
+                                (e) => DropdownMenuItem(
+                                  child: Text(e),
+                                  value: e,
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (value) {
+                            setState(() {
+                              year = value.toString();
+                            });
+                          },
+                          underline: const SizedBox(),
+                          elevation: 0,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
-                SizedBox(
-                  width: getProportionateScreenWidth(80),
-                ),
                 Expanded(
-                  flex: 2,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -98,27 +124,29 @@ class VotePage extends StatelessWidget {
                           color: AppColors.greyColor,
                           borderRadius: BorderRadius.circular(15),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              width: getProportionateScreenWidth(280),
-                              child: DefaultText(
-                                textAlign: TextAlign.start,
-                                text: 'Наурызбай ауданы',
-                                fontSize: 32,
-                              ),
-                            ),
-                            SvgPicture.asset(
-                              AppSvgImages.arrow_down,
-                              width: getProportionateScreenWidth(20),
-                            ),
-                          ],
+                        child: DropdownButton(
+                          value: district,
+                          items: districts
+                              .map(
+                                (e) => DropdownMenuItem(
+                                  child: Text(e),
+                                  value: e,
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (value) {
+                            setState(() {
+                              district = value.toString();
+                            });
+                          },
+                          underline: const SizedBox(),
+                          elevation: 0,
+                          isExpanded: true,
                         ),
-                      ),
+                      )
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -188,7 +216,7 @@ class VotePage extends StatelessWidget {
                               height: getProportionateScreenHeight(20),
                             ),
                             DefaultText(
-                              text: 'Голосов: 0',
+                              text: 'Votes: 0',
                               fontSize: 32,
                               color: AppColors.systemLightGrayColor,
                             ),

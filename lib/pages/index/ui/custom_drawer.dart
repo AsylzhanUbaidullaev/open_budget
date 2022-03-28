@@ -21,16 +21,16 @@ class _CustomDrawerState extends State<CustomDrawer> {
       child: Stack(
         children: [
           Positioned(
-                    top: MediaQuery.of(context).size.height * 0.5,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    child: Container(
-                        alignment: Alignment.bottomCenter,
-                        child: SvgPicture.asset(
-                          AppSvgImages.bottom_design,
-                          fit: BoxFit.fill,
-                        ))),
+              top: MediaQuery.of(context).size.height * 0.5,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: Container(
+                  alignment: Alignment.bottomCenter,
+                  child: SvgPicture.asset(
+                    AppSvgImages.bottom_design,
+                    fit: BoxFit.fill,
+                  ))),
           ListView(
             padding: EdgeInsets.zero,
             children: [
@@ -159,6 +159,60 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 onTap: () =>
                     Navigator.of(context).pop(widget.model.setNavIndex(4)),
               ),
+              ListTile(
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(30),
+                        vertical: getProportionateScreenHeight(30),
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryColor,
+                        border:
+                            Border.all(color: AppColors.primaryColor, width: 2),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: DefaultText(
+                        text: 'KZ',
+                        fontSize: 36,
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(30),
+                        vertical: getProportionateScreenHeight(30),
+                      ),
+                      decoration: BoxDecoration(
+                        border:
+                            Border.all(color: AppColors.primaryColor, width: 2),
+                        // color: AppColors.primaryColor.withOpacity(0.6),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: DefaultText(
+                        text: 'RU',
+                        fontSize: 36,
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: getProportionateScreenWidth(30),
+                        vertical: getProportionateScreenHeight(30),
+                      ),
+                      decoration: BoxDecoration(
+                        border:
+                            Border.all(color: AppColors.primaryColor, width: 2),
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: DefaultText(
+                        text: 'EN',
+                        fontSize: 36,
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ],
