@@ -58,6 +58,15 @@ class AppSvgImages {
   static const String power_point_ic = "assets/images/svg/power_point.svg";
   static const String word_ic = "assets/images/svg/word.svg";
   static const String excel_ic = "assets/images/svg/excel.svg";
+  static const String all_categories = "assets/images/svg/all_categories.svg";
+  static const String tractor = "assets/images/svg/tractor.svg";
+  static const String area = "assets/images/svg/area.svg";
+  static const String trash = "assets/images/svg/trash.svg";
+  static const String lamp = "assets/images/svg/lamp.svg";
+  static const String road = "assets/images/svg/road.svg";
+  static const String bordur = "assets/images/svg/bordur.svg";
+  static const String dush = "assets/images/svg/dush.svg";
+  static const String forest = "assets/images/svg/forest.svg";
 
   static const String bottom_design = "assets/images/svg/bottom_design.svg";
   static const String bottom = "assets/images/png/bottom.png";

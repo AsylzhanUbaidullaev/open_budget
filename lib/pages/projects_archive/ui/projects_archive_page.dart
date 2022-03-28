@@ -36,6 +36,8 @@ class _ProjectsArchivePageState extends State<ProjectsArchivePage> {
 
   TextEditingController searchController = TextEditingController();
 
+  List<bool> isReadMore = List.generate(6, (index) => false);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -160,18 +162,16 @@ class _ProjectsArchivePageState extends State<ProjectsArchivePage> {
         ),
         Expanded(
           child: ListView.separated(
+            padding: EdgeInsets.only(
+              bottom: getProportionateScreenHeight(250),
+            ),
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
-            itemCount: 6 + 1,
+            itemCount: isReadMore.length,
             separatorBuilder: (_, index) => SizedBox(
               height: getProportionateScreenHeight(40),
             ),
             itemBuilder: (_, index) {
-              if (index == 6) {
-                return SizedBox(
-                  height: getProportionateScreenWidth(30),
-                );
-              }
               return Container(
                 padding: EdgeInsets.only(
                   bottom: getProportionateScreenHeight(30),
@@ -298,32 +298,40 @@ class _ProjectsArchivePageState extends State<ProjectsArchivePage> {
                         ),
                       ],
                     ),
-                    index == 1 || index == 2
-                        ? _buildFile(
-                            AppSvgImages.power_point_ic,
-                            'Kurilsukaya corner. Chokina.pptx',
-                            isPowerPoint: true,
+                    isReadMore[index]
+                        ? Column(
+                            children: [
+                              index == 1 || index == 2
+                                  ? _buildFile(
+                                      AppSvgImages.power_point_ic,
+                                      'Kurilsukaya corner. Chokina.pptx',
+                                      isPowerPoint: true,
+                                    )
+                                  : const SizedBox(),
+                              index != 1 || index != 2 || index != 3
+                                  ? SizedBox(
+                                      height: getProportionateScreenHeight(20),
+                                    )
+                                  : SizedBox(),
+                              index == 2 || index == 3
+                                  ? _buildFile(AppSvgImages.word_ic,
+                                      'Bauman Grove project.docx')
+                                  : SizedBox(),
+                              SizedBox(
+                                height: getProportionateScreenHeight(20),
+                              ),
+                              _buildFile(AppSvgImages.excel_ic,
+                                  'Defect. act Kuril coal. Chokina.xlsx'),
+                              SizedBox(
+                                height: getProportionateScreenHeight(20),
+                              ),
+                            ],
                           )
                         : const SizedBox(),
-                    index != 1 || index != 2 || index != 3
-                        ? SizedBox(
-                            height: getProportionateScreenHeight(20),
-                          )
-                        : SizedBox(),
-                    index == 2 || index == 3
-                        ? _buildFile(
-                            AppSvgImages.word_ic, 'Bauman Grove project.docx')
-                        : SizedBox(),
-                    SizedBox(
-                      height: getProportionateScreenHeight(20),
-                    ),
-                    _buildFile(AppSvgImages.excel_ic,
-                        'Defect. act Kuril coal. Chokina.xlsx'),
-                    SizedBox(
-                      height: getProportionateScreenHeight(20),
-                    ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () => setState(() {
+                        isReadMore[index] = !isReadMore[index];
+                      }),
                       child: Container(
                         width: getProportionateScreenWidth(250),
                         alignment: Alignment.center,
@@ -345,7 +353,7 @@ class _ProjectsArchivePageState extends State<ProjectsArchivePage> {
                               )
                             ]),
                         child: DefaultText(
-                          text: 'Read more',
+                          text: isReadMore[index] ? 'Read less' : 'Read more',
                           fontSize: 32,
                         ),
                       ),
