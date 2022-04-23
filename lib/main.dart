@@ -19,15 +19,16 @@ void main() async {
 
   runApp(
     EasyLocalization(
-        supportedLocales: const [
-          Locale('en', 'EN'),
-          Locale('ru', 'RU'),
-          Locale('kk', 'KK'),
-        ],
-        path: 'assets/lang', // <-- change the path of the translation files
-        fallbackLocale: const Locale('en', 'EN'),
-        child: MyApp(
-          model: model,
-        )),
+      supportedLocales: const [
+        Locale('en', 'EN'),
+        Locale('ru', 'RU'),
+        Locale('kk', 'KK'),
+      ],
+      path: 'assets/lang', // <-- change the path of the translation files
+      fallbackLocale: const Locale('en', 'EN'),
+      child: MyApp(
+        model: model,
+      ),
+    ),
   );
 }

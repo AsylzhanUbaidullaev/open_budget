@@ -28,11 +28,11 @@ Future showDialogCustom(
 
 showCustomToast(String msg) {
   return Fluttertoast.showToast(
-    msg: "$msg",
+    msg: msg,
     toastLength: Toast.LENGTH_LONG,
-    gravity: ToastGravity.CENTER,
+    gravity: ToastGravity.SNACKBAR,
     timeInSecForIosWeb: 2,
-    backgroundColor: AppColors.systemRedColor,
+    backgroundColor: AppColors.primaryColor,
     textColor: AppColors.systemWhiteColor,
     fontSize: 16.0,
     webPosition: "center",

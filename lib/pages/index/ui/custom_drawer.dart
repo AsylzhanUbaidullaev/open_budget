@@ -50,150 +50,35 @@ class _CustomDrawerState extends State<CustomDrawer> {
                         height: getProportionateScreenHeight(150),
                       ),
                     ),
-                    ListTile(
-                      tileColor: widget.model.navIndex == 0
-                          ? AppColors.primaryColor
-                          : null,
-                      leading: SvgPicture.asset(
-                        AppSvgImages.home_ic,
-                        color: widget.model.navIndex == 0
-                            ? AppColors.whiteColor
-                            : AppColors.systemBlackColor,
-                        width: getProportionateScreenWidth(50),
-                        height: getProportionateScreenHeight(50),
-                      ),
-                      title: Row(
-                        children: [
-                          DefaultText(
-                            text: 'mainPage'.tr(),
-                            fontSize: 36,
-                          ),
-                          const Spacer(),
-                        ],
-                      ),
-                      onTap: () => Navigator.of(context)
-                          .pop(widget.model.setNavIndex(0)),
-                    ),
-                    ListTile(
-                      tileColor: widget.model.navIndex == 1
-                          ? AppColors.primaryColor
-                          : null,
-                      leading: SvgPicture.asset(
-                        AppSvgImages.help_ic,
-                        color: widget.model.navIndex == 1
-                            ? AppColors.whiteColor
-                            : AppColors.systemBlackColor,
-                        width: getProportionateScreenWidth(50),
-                        height: getProportionateScreenHeight(50),
-                      ),
-                      title: Row(
-                        children: [
-                          DefaultText(
-                            text: 'aboutProject'.tr(),
-                            fontSize: 36,
-                          ),
-                          const Spacer(),
-                        ],
-                      ),
-                      onTap: () => Navigator.of(context)
-                          .pop(widget.model.setNavIndex(1)),
-                    ),
-                    ListTile(
-                      tileColor: widget.model.navIndex == 2
-                          ? AppColors.primaryColor
-                          : null,
-                      leading: SvgPicture.asset(
-                        AppSvgImages.notes_ic,
-                        color: widget.model.navIndex == 2
-                            ? AppColors.whiteColor
-                            : AppColors.systemBlackColor,
-                        width: getProportionateScreenWidth(50),
-                        height: getProportionateScreenHeight(50),
-                      ),
-                      title: Row(
-                        children: [
-                          DefaultText(
-                            text: 'projectMaterials'.tr(),
-                            fontSize: 36,
-                          ),
-                          const Spacer(),
-                        ],
-                      ),
-                      onTap: () => Navigator.of(context)
-                          .pop(widget.model.setNavIndex(2)),
-                    ),
-                    ListTile(
-                      tileColor: widget.model.navIndex == 3
-                          ? AppColors.primaryColor
-                          : null,
-                      leading: SvgPicture.asset(
-                        AppSvgImages.archive_ic,
-                        color: widget.model.navIndex == 3
-                            ? AppColors.whiteColor
-                            : AppColors.systemBlackColor,
-                        width: getProportionateScreenWidth(50),
-                        height: getProportionateScreenHeight(50),
-                      ),
-                      title: Row(
-                        children: [
-                          DefaultText(
-                            text: 'archieveOfMaterials'.tr(),
-                            fontSize: 36,
-                          ),
-                          const Spacer(),
-                        ],
-                      ),
-                      onTap: () => Navigator.of(context)
-                          .pop(widget.model.setNavIndex(3)),
-                    ),
-                    ListTile(
-                      tileColor: widget.model.navIndex == 4
-                          ? AppColors.primaryColor
-                          : null,
-                      leading: SvgPicture.asset(
-                        AppSvgImages.archive_ic,
-                        color: widget.model.navIndex == 4
-                            ? AppColors.whiteColor
-                            : AppColors.systemBlackColor,
-                        width: getProportionateScreenWidth(50),
-                        height: getProportionateScreenHeight(50),
-                      ),
-                      title: Row(
-                        children: [
-                          DefaultText(
-                            text: 'projectMap'.tr(),
-                            fontSize: 36,
-                          ),
-                          const Spacer(),
-                        ],
-                      ),
-                      onTap: () => Navigator.of(context)
-                          .pop(widget.model.setNavIndex(4)),
-                    ),
-                    ListTile(
-                      tileColor: widget.model.navIndex == 5
-                          ? AppColors.primaryColor
-                          : null,
-                      leading: SvgPicture.asset(
-                        AppSvgImages.person_ic,
-                        color: widget.model.navIndex == 5
-                            ? AppColors.whiteColor
-                            : AppColors.systemBlackColor,
-                        width: getProportionateScreenWidth(50),
-                        height: getProportionateScreenHeight(50),
-                      ),
-                      title: Row(
-                        children: [
-                          DefaultText(
-                            text: 'profile'.tr(),
-                            fontSize: 36,
-                          ),
-                          const Spacer(),
-                        ],
-                      ),
-                      onTap: () => Navigator.of(context)
-                          .pop(widget.model.setNavIndex(5)),
-                    ),
+                    _buildListTile(context, 0, 'mainPage'),
+                    _buildListTile(context, 1, 'aboutProject'),
+                    _buildListTile(context, 2, 'projectMaterials'),
+                    _buildListTile(context, 3, 'archieveOfMaterials'),
+                    // ListTile(
+                    //   tileColor: widget.model.navIndex == 4
+                    //       ? AppColors.primaryColor
+                    //       : null,
+                    //   leading: SvgPicture.asset(
+                    //     AppSvgImages.archive_ic,
+                    //     color: widget.model.navIndex == 4
+                    //         ? AppColors.whiteColor
+                    //         : AppColors.systemBlackColor,
+                    //     width: getProportionateScreenWidth(50),
+                    //     height: getProportionateScreenHeight(50),
+                    //   ),
+                    //   title: Row(
+                    //     children: [
+                    //       DefaultText(
+                    //         text: 'projectMap'.tr(),
+                    //         fontSize: 36,
+                    //       ),
+                    //       const Spacer(),
+                    //     ],
+                    //   ),
+                    //   onTap: () => Navigator.of(context)
+                    //       .pop(widget.model.setNavIndex(4)),
+                    // ),
+                    _buildListTile(context, 5, 'profile'),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -275,5 +160,33 @@ class _CustomDrawerState extends State<CustomDrawer> {
             ),
           );
         });
+  }
+
+  ListTile _buildListTile(BuildContext context, int index, String text) {
+    return ListTile(
+      tileColor: widget.model.navIndex == index ? AppColors.primaryColor : null,
+      leading: SvgPicture.asset(
+        AppSvgImages.person_ic,
+        color: widget.model.navIndex == index
+            ? AppColors.whiteColor
+            : AppColors.systemBlackColor,
+        width: getProportionateScreenWidth(50),
+        height: getProportionateScreenHeight(50),
+      ),
+      title: Row(
+        children: [
+          Flexible(
+            child: DefaultText(
+              textAlign: TextAlign.left,
+              text: text.tr(),
+              fontSize: 36,
+            ),
+          ),
+        ],
+      ),
+      onTap: () => Navigator.of(context).pop(
+        widget.model.setNavIndex(index),
+      ),
+    );
   }
 }

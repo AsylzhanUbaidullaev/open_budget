@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:flutter_multi_formatter/formatters/masked_input_formatter.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -22,8 +24,10 @@ class Login extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: AppColors.whiteColor,
         body: BaseProvider<LoginProvider>(
+          onReady: (p0) => p0.init(context),
           model: LoginProvider(),
           builder: (context, model, child) {
             return model.isLoading
@@ -93,16 +97,17 @@ class Login extends StatelessWidget {
                                 child: CustomContainer(
                                   child: TextField(
                                     controller: model.phoneController,
-                                    onTap: () {},
-                                    onEditingComplete: () {
+                                    onSubmitted: (vale) {
                                       model.checkPhoneNumber();
                                     },
                                     keyboardType: TextInputType.number,
                                     cursorColor: AppColors.systemBlackColor,
                                     inputFormatters: [
                                       MaskTextInputFormatter(
-                                          mask: '(###) ###-##-##',
-                                          filter: {"#": RegExp(r'[0-9]')}),
+                                        mask: "(###) ### ##-##",
+                                        type: MaskAutoCompletionType.lazy,
+                                        filter: {'#': RegExp(r'[0-9]')},
+                                      ),
                                     ],
                                     decoration: const InputDecoration(
                                       prefixIcon: Padding(

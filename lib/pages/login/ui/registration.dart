@@ -146,14 +146,43 @@ class Registration extends StatelessWidget {
                                 ),
                                 child: CustomContainer(
                                   child: TextField(
-                                    controller: model.phoneController,
+                                    controller: model.emailController,
                                     onChanged: (String value) {
+                                      // model.checkPassword(value);
+                                    },
+                                    keyboardType: TextInputType.visiblePassword,
+                                    obscureText: false,
+                                    cursorColor: AppColors.systemBlackColor,
+                                    decoration: const InputDecoration(
+                                      hintText: 'Почта',
+                                      hintStyle: TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontSize: 16,
+                                      ),
+                                      border: InputBorder.none,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              UIHelper.verticalSpace(20),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: getProportionateScreenWidth(40),
+                                ),
+                                child: CustomContainer(
+                                  child: TextField(
+                                    controller: model.phoneController,
+                                    onSubmitted: (String value) {
                                       model.checkPhoneNumber(value);
                                     },
                                     keyboardType: TextInputType.number,
                                     cursorColor: AppColors.systemBlackColor,
                                     inputFormatters: [
-                                      MaskedInputFormatter('000 000 0000'),
+                                      MaskTextInputFormatter(
+                                        mask: "(###) ### ##-##",
+                                        type: MaskAutoCompletionType.lazy,
+                                        filter: {'#': RegExp(r'[0-9]')},
+                                      ),
                                     ],
                                     decoration: const InputDecoration(
                                       prefixIcon: Padding(

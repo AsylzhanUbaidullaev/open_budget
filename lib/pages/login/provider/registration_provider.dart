@@ -6,6 +6,7 @@ class RegistrationProvider extends BaseBloc {
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController surnameController = TextEditingController();
   bool isButtonEnabled = false;
   String? phoneError;

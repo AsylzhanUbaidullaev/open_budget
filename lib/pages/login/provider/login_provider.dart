@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:open_budget/base/base_bloc.dart';
 import 'package:open_budget/pages/login/ui/registration.dart';
+import 'package:open_budget/shared/size_config.dart';
 
 class LoginProvider extends BaseBloc {
   TextEditingController phoneController = TextEditingController();
@@ -10,6 +13,12 @@ class LoginProvider extends BaseBloc {
   // AuthService _authService = AuthService();
   String? phoneError;
 
+  init(BuildContext context) {
+    setLoading(true);
+    SizeConfig().init(context);
+    setLoading(false);
+  }
+
   toRegistration(context) {
     Navigator.pushAndRemoveUntil(
         context,
@@ -18,9 +27,10 @@ class LoginProvider extends BaseBloc {
   }
 
   checkPhoneNumber() {
-    if (phoneController.text.length == 10) {
+    if (phoneController.text.length == 15) {
       isButtonEnabled = true;
       notifyListeners();
+      log(phoneController.text);
     } else {
       isButtonEnabled = false;
       notifyListeners();
