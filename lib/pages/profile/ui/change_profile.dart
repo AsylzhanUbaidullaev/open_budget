@@ -21,7 +21,7 @@ class ChangeProfile extends StatelessWidget {
       model: ChangeProfileProvider(),
       builder: (context, model, child) {
         return model.isLoading
-            ? LoadinView()
+            ? const LoadinView()
             : Scaffold(
                 appBar: CustomAppBar(
                   title: 'changeProfile'.tr(),
@@ -45,7 +45,8 @@ class ChangeProfile extends StatelessWidget {
                     Positioned(
                       child: Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: getProportionateScreenWidth(45)),
+                          horizontal: getProportionateScreenWidth(45),
+                        ),
                         child: Column(
                           children: [
                             UIHelper.verticalSpace(
@@ -60,102 +61,21 @@ class ChangeProfile extends StatelessWidget {
                               children: [
                                 GestureDetector(
                                   onTap: () {},
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical:
-                                            getProportionateScreenHeight(15),
-                                        horizontal:
-                                            getProportionateScreenWidth(15)),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(90),
-                                      color: AppColors.whiteColor,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          // offset: Offset(0, -4),
-                                          spreadRadius: 2,
-                                          blurRadius: 4,
-                                          color: AppColors.systemBlackColor
-                                              .withOpacity(0.2),
-                                        ),
-                                      ],
-                                    ),
-                                    child: Center(
-                                      child: SvgPicture.asset(
-                                        AppSvgImages.ic_camera,
-                                        height:
-                                            getProportionateScreenHeight(68),
-                                        width: getProportionateScreenWidth(68),
-                                      ),
-                                    ),
-                                  ),
+                                  child: _buildChanges(AppSvgImages.ic_camera),
                                 ),
                                 UIHelper.horizontalSpace(
                                   getProportionateScreenWidth(42),
                                 ),
                                 GestureDetector(
                                   onTap: () {},
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical:
-                                            getProportionateScreenHeight(15),
-                                        horizontal:
-                                            getProportionateScreenWidth(15)),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(90),
-                                      color: AppColors.whiteColor,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          // offset: Offset(0, -4),
-                                          spreadRadius: 2,
-                                          blurRadius: 4,
-                                          color: AppColors.systemBlackColor
-                                              .withOpacity(0.2),
-                                        ),
-                                      ],
-                                    ),
-                                    child: Center(
-                                      child: SvgPicture.asset(
-                                        AppSvgImages.ic_change,
-                                        height:
-                                            getProportionateScreenHeight(68),
-                                        width: getProportionateScreenWidth(68),
-                                      ),
-                                    ),
-                                  ),
+                                  child: _buildChanges(AppSvgImages.ic_change),
                                 ),
                                 UIHelper.horizontalSpace(
                                   getProportionateScreenWidth(42),
                                 ),
                                 GestureDetector(
                                   onTap: () {},
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical:
-                                            getProportionateScreenHeight(20),
-                                        horizontal:
-                                            getProportionateScreenWidth(20)),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(90),
-                                      color: AppColors.whiteColor,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          // offset: Offset(0, -4),
-                                          spreadRadius: 2,
-                                          blurRadius: 4,
-                                          color: AppColors.systemBlackColor
-                                              .withOpacity(0.2),
-                                        ),
-                                      ],
-                                    ),
-                                    child: Center(
-                                      child: SvgPicture.asset(
-                                        AppSvgImages.ic_trash,
-                                        height:
-                                            getProportionateScreenHeight(58),
-                                        width: getProportionateScreenWidth(58),
-                                      ),
-                                    ),
-                                  ),
+                                  child: _buildChanges(AppSvgImages.ic_trash),
                                 ),
                               ],
                             ),
@@ -175,24 +95,31 @@ class ChangeProfile extends StatelessWidget {
                                 UIHelper.verticalSpace(
                                   getProportionateScreenHeight(30),
                                 ),
-                                TextField(
-                                  cursorColor: AppColors.systemBlackColor,
-                                  controller: model.nameController,
-                                  onSubmitted: (value) {
-                                    // model.changeName(value);
-                                  },
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                          color: Color(0xffF8F8F8)),
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    enabledBorder: InputBorder.none,
-                                    focusedBorder: InputBorder.none,
-                                    fillColor: const Color(0xffEEEEEE),
-                                    filled: true,
-                                  ),
+                                _buildTextField(model.nameController),
+                                UIHelper.verticalSpace(40),
+                                const Text(
+                                  'Email',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
                                 ),
+                                UIHelper.verticalSpace(
+                                  getProportionateScreenHeight(30),
+                                ),
+                                _buildTextField(model.emailController),
+                                UIHelper.verticalSpace(40),
+                                const Text(
+                                  'Номер',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                UIHelper.verticalSpace(
+                                  getProportionateScreenHeight(30),
+                                ),
+                                _buildTextField(model.phoneController),
                                 UIHelper.verticalSpace(
                                   getProportionateScreenHeight(90),
                                 ),
@@ -212,6 +139,55 @@ class ChangeProfile extends StatelessWidget {
                 ),
               );
       },
+    );
+  }
+
+  TextField _buildTextField(TextEditingController controller) {
+    return TextField(
+      cursorColor: AppColors.systemBlackColor,
+      controller: controller,
+      onSubmitted: (value) {
+        // model.changeName(value);
+      },
+      decoration: InputDecoration(
+        isDense: true,
+        enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Color(0xffF8F8F8)),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Color(0xffF8F8F8)),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        fillColor: const Color(0xffEEEEEE),
+        filled: true,
+      ),
+    );
+  }
+
+  Container _buildChanges(String svg) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        vertical: getProportionateScreenHeight(20),
+        horizontal: getProportionateScreenWidth(20),
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(90),
+        color: AppColors.whiteColor,
+        boxShadow: [
+          BoxShadow(
+            offset: const Offset(0, 4),
+            spreadRadius: 2,
+            blurRadius: 4,
+            color: AppColors.systemBlackColor.withOpacity(0.2),
+          ),
+        ],
+      ),
+      child: SvgPicture.asset(
+        svg,
+        height: getProportionateScreenHeight(58),
+        width: getProportionateScreenWidth(58),
+      ),
     );
   }
 }

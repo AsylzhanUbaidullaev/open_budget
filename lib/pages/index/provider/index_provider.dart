@@ -4,13 +4,13 @@ import 'package:open_budget/shared/size_config.dart';
 
 class IndexProvider extends BaseBloc {
   int navIndex = 0;
-  String currentTitle = 'Participation budget';
+  String currentTitle = 'participationBudget'.tr();
 
   List<String> titles = [
     'participationBudget'.tr(),
     'aboutProject'.tr(),
     'projectMaterials'.tr(),
-    'archiveOfMaterials'.tr(),
+    'archieveOfMaterials'.tr(),
     'projectMap'.tr(),
     'profile'.tr(),
   ];

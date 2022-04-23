@@ -14,7 +14,7 @@ class CustomDrawerProvider extends BaseBloc {
   ];
 
   Locale? _locale;
-  String langGroupValue = "";
+  String langGroupValue = 'EN';
 
   init(context) {
     setLoading(true);

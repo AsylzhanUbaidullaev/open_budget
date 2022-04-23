@@ -79,6 +79,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     //       .pop(widget.model.setNavIndex(4)),
                     // ),
                     _buildListTile(context, 5, 'profile'),
+                    SizedBox(
+                      height: getProportionateScreenHeight(20),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -178,6 +181,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
           Flexible(
             child: DefaultText(
               textAlign: TextAlign.left,
+              color:
+                  widget.model.navIndex == index ? AppColors.whiteColor : null,
               text: text.tr(),
               fontSize: 36,
             ),
