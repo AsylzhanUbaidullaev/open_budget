@@ -1,10 +1,12 @@
 import 'dart:developer';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:open_budget/base/base_provider.dart';
 import 'package:open_budget/pages/home/ui/vote_page.dart';
 import 'package:open_budget/pages/index/provider/index_provider.dart';
+import 'package:open_budget/pages/map/ui/map.dart';
 import 'package:open_budget/pages/materials/ui/project_materials_page.dart';
 import 'package:open_budget/pages/profile/ui/profile_page.dart';
 import 'package:open_budget/pages/projects_archive/ui/widgets/category_bottom_sheet.dart';
@@ -51,7 +53,7 @@ class IndexPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: DefaultText(
-                        text: 'Project submission',
+                        text: 'projectSubmission'.tr(),
                         fontSize: 32,
                         color: AppColors.whiteColor,
                       ),
@@ -76,7 +78,7 @@ class IndexPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: DefaultText(
-                          text: 'Vote on the project',
+                          text: 'voteOnTheProject'.tr(),
                           fontSize: 32,
                           color: AppColors.whiteColor,
                         ),
@@ -136,7 +138,7 @@ class IndexPage extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 DefaultText(
-                                  text: 'Сумма от',
+                                  text: 'amountFrom'.tr(),
                                   color: AppColors.whiteColor,
                                 ),
                                 SizedBox(
@@ -161,7 +163,7 @@ class IndexPage extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 DefaultText(
-                                  text: 'Сумма до',
+                                  text: 'amountUpTo'.tr(),
                                   color: AppColors.whiteColor,
                                 ),
                                 SizedBox(
@@ -191,6 +193,7 @@ class IndexPage extends StatelessWidget {
     AboutProjectPage(),
     const ProjectMaterialsPage(),
     const ProjectsArchivePage(),
+    const MapPage(),
     const ProfilePage(),
   ];
 }

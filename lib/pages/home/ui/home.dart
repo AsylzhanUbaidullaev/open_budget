@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:open_budget/shared/size_config.dart';
@@ -33,21 +34,21 @@ class _HomePageState extends State<HomePage> {
                 Container(
                   width: getProportionateScreenWidth(180),
                   child: DefaultText(
-                    text: 'Projects submitted in 2021',
+                    text: 'projectsSubmitted'.tr(),
                     fontSize: 32,
                   ),
                 ),
                 Container(
                   width: getProportionateScreenWidth(180),
                   child: DefaultText(
-                    text: 'Voting-friendly projects',
+                    text: 'votingFriendlyProjects'.tr(),
                     fontSize: 32,
                   ),
                 ),
                 Container(
                   width: getProportionateScreenWidth(180),
                   child: DefaultText(
-                    text: 'Projects submitted for implementation',
+                    text: 'projectsSubmittedForImplementation'.tr(),
                     fontSize: 32,
                   ),
                 ),
@@ -176,11 +177,9 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: getProportionateScreenHeight(40),
             ),
-            Container(
-              child: Text(
-                '2021 жылдың 21 қазанынан 09 қарашасына дейін! жылды қоса алғанда, «Қатысу бюджеті» қалалық жобасы аясында Алматы қаласын абаттандыру бойынша тұрғындардың ұсыныстарына дауыс беру өткізіледі. 2021 жылғы 21 қазаннан 09 қарашаға дейін қоса алғанда «Бюджетке қатысу» қалалық жобасы шеңберінде Алматыны абаттандыру бойынша тұрғындардың ұсыныстары үшін дауыс беру өтеді. \nОнлайн-дауыс беру үшін қажет: \n1) budget.open-almaty.kz порталындағы «дауыс беру» бөліміне өту; \n2) ұнаған жобалық ұсыныстан 3-тен артық емес таңдау; \n3) дауыс беруді растаудың неғұрлым ыңғайлы тәсілін – ЭЦҚ немесе ЖСН (SMS-код) көмегімен айқындау қажет. \n\nҚағаз түрінде дауыс беру үшін қажет: \n1) кез келген аудан әкімдігіне (сағат 09:00-ден 18:00-ге дейін, үзіліс сағат 13:00-ден 14:00-ге дейін) немесе Open Almaty фронт-офисіне бару, өзіңізбен бірге жеке басыңызды куәландыратын құжатыңыз болу керек; \n2) жергілікті жерде берілген қағаз нысанды толтыру; \n3) толтырылған нысанды дауыс жинау жәшігіне тастау керек. \n«Бюджетке қатысу» жобасы қалалық бюджеттен Алматының 8 ауданының әрқайсысына 800 млн теңгеден бөлуді көздейді (жобаның жалпы сомасы 6,4 млрд теңге).',
-                maxLines: isReadMore ? null : 5,
-              ),
+            Text(
+              '2021 жылдың 21 қазанынан 09 қарашасына дейін! жылды қоса алғанда, «Қатысу бюджеті» қалалық жобасы аясында Алматы қаласын абаттандыру бойынша тұрғындардың ұсыныстарына дауыс беру өткізіледі. 2021 жылғы 21 қазаннан 09 қарашаға дейін қоса алғанда «Бюджетке қатысу» қалалық жобасы шеңберінде Алматыны абаттандыру бойынша тұрғындардың ұсыныстары үшін дауыс беру өтеді. \nОнлайн-дауыс беру үшін қажет: \n1) budget.open-almaty.kz порталындағы «дауыс беру» бөліміне өту; \n2) ұнаған жобалық ұсыныстан 3-тен артық емес таңдау; \n3) дауыс беруді растаудың неғұрлым ыңғайлы тәсілін – ЭЦҚ немесе ЖСН (SMS-код) көмегімен айқындау қажет. \n\nҚағаз түрінде дауыс беру үшін қажет: \n1) кез келген аудан әкімдігіне (сағат 09:00-ден 18:00-ге дейін, үзіліс сағат 13:00-ден 14:00-ге дейін) немесе Open Almaty фронт-офисіне бару, өзіңізбен бірге жеке басыңызды куәландыратын құжатыңыз болу керек; \n2) жергілікті жерде берілген қағаз нысанды толтыру; \n3) толтырылған нысанды дауыс жинау жәшігіне тастау керек. \n«Бюджетке қатысу» жобасы қалалық бюджеттен Алматының 8 ауданының әрқайсысына 800 млн теңгеден бөлуді көздейді (жобаның жалпы сомасы 6,4 млрд теңге).',
+              maxLines: isReadMore ? null : 5,
             ),
             SizedBox(
               height: getProportionateScreenHeight(20),
@@ -192,7 +191,7 @@ class _HomePageState extends State<HomePage> {
               child: Align(
                 alignment: Alignment.topRight,
                 child: DefaultText(
-                  text: isReadMore ? 'Read less' : 'Read more',
+                  text: isReadMore ? 'readLess'.tr() : 'readMore'.tr(),
                   color: AppColors.primaryColor,
                   fontSize: 32,
                   maxLines: isReadMore ? null : 5,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:open_budget/pages/index/provider/index_provider.dart';
@@ -26,15 +27,15 @@ class _CategoryBottomSheetState extends State<CategoryBottomSheet> {
   ];
 
   List<String> texts = [
-    'Бәрі',
-    'Тротуарларды жайластыру',
-    'Аула аумақтарында және ортақ пайдалану орындарында спорттық (жаттығу алаңдарын, футбол, баскетбол, волейбол алаңдарын), балалар ойын алаңдарын орнату, жөндеу және жарықтандыру',
-    'Ортақ пайдалану орындарын құру, жөндеу және жарықтандыру (саябақтар, скверлер, жаяу жүргіншілер аймақтары және өзге де объектілер)',
-    'Ортақ пайдалану орындарында күркелер, орындықтар, урналар және балалардың ойнауы және ересек тұрғындардың демалуы үшін жабдықтар мен конструкциялар орнату және жөндеу',
-    'Аумақты көгалдандыру',
-    'Тротуарларды, пандустарды, арықтарды салу және жөндеу',
-    'Қоқыс тастайтын жерлерді жою',
-    'Бордюрларды, брусчаткаларды, тіреуіш қабырғаларды жөндеу',
+    'all'.tr(),
+    'sidewalkArrangement'.tr(),
+    'installation'.tr(),
+    'creation'.tr(),
+    'installationTwo'.tr(),
+    'landscaping'.tr(),
+    'construction'.tr(),
+    'disposal'.tr(),
+    'repair'.tr(),
   ];
 
   List<int> svgsWidth = [60, 75, 70, 55, 65, 67, 66, 50, 65];

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:open_budget/widgets/default_button.dart';
@@ -17,21 +18,21 @@ class ProjectsArchivePage extends StatefulWidget {
 
 class _ProjectsArchivePageState extends State<ProjectsArchivePage> {
   String year = '2019';
-  String district = 'Nauryzbay district';
+  String district = 'nauryzbay'.tr();
   List<String> years = [
     '2019',
     '2020',
     '2021',
   ];
   List<String> districts = [
-    'Nauryzbay district',
-    'Alatau district',
-    'Zhetysu district',
-    'Almaly district',
-    'Bostandyk district',
-    'Medeu district',
-    'Auezov district',
-    'Turksib district',
+    'nauryzbay'.tr(),
+    'alatau'.tr(),
+    'zhetysu'.tr(),
+    'almaly'.tr(),
+    'bostandyk'.tr(),
+    'medeu'.tr(),
+    'auezov'.tr(),
+    'turksib'.tr(),
   ];
 
   TextEditingController searchController = TextEditingController();
@@ -284,15 +285,15 @@ class _ProjectsArchivePageState extends State<ProjectsArchivePage> {
                         SizedBox(
                           height: getProportionateScreenHeight(20),
                         ),
-                        _buildText('Number of offline votes: 0', 36),
+                        _buildText('numberOfOfflineVotes'.tr() + ': 0', 36),
                         SizedBox(
                           height: getProportionateScreenHeight(10),
                         ),
-                        _buildText('Votes: 0', 36),
+                        _buildText('votes'.tr() + ': 0', 36),
                         SizedBox(
                           height: getProportionateScreenHeight(10),
                         ),
-                        _buildText('Status: Completed', 36),
+                        _buildText('status'.tr() + ': ' + 'completed'.tr(), 36),
                         SizedBox(
                           height: getProportionateScreenHeight(40),
                         ),
@@ -353,7 +354,9 @@ class _ProjectsArchivePageState extends State<ProjectsArchivePage> {
                               )
                             ]),
                         child: DefaultText(
-                          text: isReadMore[index] ? 'Read less' : 'Read more',
+                          text: isReadMore[index]
+                              ? 'readLess'.tr()
+                              : 'readMore'.tr(),
                           fontSize: 32,
                         ),
                       ),

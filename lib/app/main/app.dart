@@ -1,4 +1,5 @@
 import 'package:connectivity/connectivity.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:open_budget/app/main/app_model.dart';
 import 'package:open_budget/app/main/navigator_state.dart';
@@ -20,6 +21,9 @@ class MyApp extends StatelessWidget {
           stream: model.connectionStatusController.stream,
           builder: (context, snapshot) {
             return MaterialApp(
+              localizationsDelegates: context.localizationDelegates,
+              supportedLocales: context.supportedLocales,
+              locale: context.locale,
               debugShowCheckedModeBanner: false,
               title: 'Open Budget',
               navigatorKey: GlobalVariable.navState,

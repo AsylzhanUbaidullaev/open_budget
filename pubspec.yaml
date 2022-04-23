@@ -33,6 +33,7 @@ dependencies:
   provider: ^6.0.1
   modal_progress_hud_nsn: ^0.1.0-nullsafety-1
   mask_text_input_formatter: ^2.1.0
+  get_it: ^7.2.0
 
 
 
@@ -51,6 +52,7 @@ flutter:
   assets:
     - assets/images/svg/
     - assets/images/png/
+    - assets/lang/
   
   # fonts:
   #   - family: Manrope

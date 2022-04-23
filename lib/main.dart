@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:open_budget/service_locator.dart';
 
 import 'app/main/app.dart';
 import 'app/main/app_model.dart';
@@ -13,20 +14,20 @@ void main() async {
 
   final model = MyAppModel();
   await model.init();
+  // setUp();
+  // runApp(MyApp(model: model));
 
-  runApp(MyApp(model: model));
-
-  // runApp(
-  //   EasyLocalization(
-  //       supportedLocales: const [
-  //         Locale('en', 'EN'),
-  //         Locale('ru', 'RU'),
-  //         Locale('kk', 'KK'),
-  //       ],
-  //       path: 'assets/lang', // <-- change the path of the translation files
-  //       fallbackLocale: const Locale('en', 'EN'),
-  //       child: MyApp(
-  //         model: model,
-  //       )),
-  // );
+  runApp(
+    EasyLocalization(
+        supportedLocales: const [
+          Locale('en', 'EN'),
+          Locale('ru', 'RU'),
+          Locale('kk', 'KK'),
+        ],
+        path: 'assets/lang', // <-- change the path of the translation files
+        fallbackLocale: const Locale('en', 'EN'),
+        child: MyApp(
+          model: model,
+        )),
+  );
 }

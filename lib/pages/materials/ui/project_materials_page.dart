@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:open_budget/widgets/dash_divider.dart';
@@ -15,21 +16,21 @@ class ProjectMaterialsPage extends StatefulWidget {
 
 class _ProjectMaterialsPageState extends State<ProjectMaterialsPage> {
   String year = '2019';
-  String district = 'Nauryzbay district';
+  String district = 'nauryzbay'.tr();
   List<String> years = [
     '2019',
     '2020',
     '2021',
   ];
   List<String> districts = [
-    'Nauryzbay district',
-    'Alatau district',
-    'Zhetysu district',
-    'Almaly district',
-    'Bostandyk district',
-    'Medeu district',
-    'Auezov district',
-    'Turksib district',
+    'nauryzbay'.tr(),
+    'alatau'.tr(),
+    'zhetysu'.tr(),
+    'almaly'.tr(),
+    'bostandyk'.tr(),
+    'medeu'.tr(),
+    'auezov'.tr(),
+    'turksib'.tr(),
   ];
 
   @override
@@ -52,7 +53,7 @@ class _ProjectMaterialsPageState extends State<ProjectMaterialsPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     DefaultText(
-                      text: 'Select a year',
+                      text: 'selectYear'.tr(),
                       fontSize: 32,
                     ),
                     SizedBox(
@@ -94,7 +95,7 @@ class _ProjectMaterialsPageState extends State<ProjectMaterialsPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     DefaultText(
-                      text: 'District',
+                      text: 'district'.tr(),
                       fontSize: 32,
                     ),
                     SizedBox(
@@ -224,7 +225,7 @@ class _ProjectMaterialsPageState extends State<ProjectMaterialsPage> {
                               width: getProportionateScreenWidth(20),
                             ),
                             DefaultText(
-                              text: 'Download',
+                              text: 'download'.tr(),
                               fontSize: 28,
                             ),
                             const Spacer(),

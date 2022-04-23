@@ -32,6 +32,7 @@ class AppColors {
   static const Color telegramColor = Color(0xff0088CC);
   // static const Color greyColor = Color(0xffF5F5F5);
   static const Color greyColor = Color(0xffF0F0F0);
+  static const Color darkGreyColor = Color(0xff999999);
   static Color shadowColor = const Color(0xff041538).withOpacity(0.25);
 }
 
@@ -67,6 +68,17 @@ class AppSvgImages {
   static const String bordur = "assets/images/svg/bordur.svg";
   static const String dush = "assets/images/svg/dush.svg";
   static const String forest = "assets/images/svg/forest.svg";
+  static const String ic_user = 'assets/images/svg/ic_user.svg';
+
+  //profile
+  static const String ic_lang = 'assets/images/svg/ic_language.svg';
+  static const String ic_help = 'assets/images/svg/ic_help.svg';
+  static const String ic_check = 'assets/images/svg/ic_check.svg';
+  static const String ic_logout = 'assets/images/svg/ic_logout.svg';
+  static const String ic_arrow_right = 'assets/images/svg/ic_arrow_right.svg';
+  static const String ic_camera = 'assets/images/svg/ic_camera.svg';
+  static const String ic_change = 'assets/images/svg/ic_change.svg';
+  static const String ic_trash = 'assets/images/svg/ic_trash.svg';
 
   static const String bottom_design = "assets/images/svg/bottom_design.svg";
   static const String bottom = "assets/images/png/bottom.png";

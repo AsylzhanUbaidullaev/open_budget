@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:open_budget/shared/size_config.dart';
@@ -16,21 +17,21 @@ class VotePage extends StatefulWidget {
 
 class _VotePageState extends State<VotePage> {
   String year = '2019';
-  String district = 'Nauryzbay district';
+  String district = 'nauryzbay'.tr();
   List<String> years = [
     '2019',
     '2020',
     '2021',
   ];
   List<String> districts = [
-    'Nauryzbay district',
-    'Alatau district',
-    'Zhetysu district',
-    'Almaly district',
-    'Bostandyk district',
-    'Medeu district',
-    'Auezov district',
-    'Turksib district',
+    'nauryzbay'.tr(),
+    'alatau'.tr(),
+    'zhetysu'.tr(),
+    'almaly'.tr(),
+    'bostandyk'.tr(),
+    'medeu'.tr(),
+    'auezov'.tr(),
+    'turksib'.tr(),
   ];
 
   @override
@@ -38,7 +39,7 @@ class _VotePageState extends State<VotePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.primaryColor,
-        title: const Text('Vote on the project'),
+        title: Text('voteOnTheProject'.tr()),
         centerTitle: true,
         automaticallyImplyLeading: false,
         leading: InkWell(
@@ -67,7 +68,7 @@ class _VotePageState extends State<VotePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       DefaultText(
-                        text: 'Select a year',
+                        text: 'selectYear'.tr(),
                         fontSize: 32,
                       ),
                       SizedBox(
@@ -109,7 +110,7 @@ class _VotePageState extends State<VotePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       DefaultText(
-                        text: 'District',
+                        text: 'district'.tr(),
                         fontSize: 32,
                       ),
                       SizedBox(
@@ -216,7 +217,7 @@ class _VotePageState extends State<VotePage> {
                               height: getProportionateScreenHeight(20),
                             ),
                             DefaultText(
-                              text: 'Votes: 0',
+                              text: 'votes'.tr() + ': 0',
                               fontSize: 32,
                               color: AppColors.systemLightGrayColor,
                             ),
@@ -240,7 +241,7 @@ class _VotePageState extends State<VotePage> {
                                       width: getProportionateScreenWidth(20),
                                     ),
                                     DefaultText(
-                                      text: 'Download',
+                                      text: 'download'.tr(),
                                       fontSize: 28,
                                       isUnderline: true,
                                     ),
@@ -257,7 +258,7 @@ class _VotePageState extends State<VotePage> {
                                     borderRadius: BorderRadius.circular(15),
                                   ),
                                   child: DefaultText(
-                                    text: 'Vote',
+                                    text: 'vote'.tr(),
                                     fontSize: 32,
                                     color: AppColors.whiteColor,
                                   ),
