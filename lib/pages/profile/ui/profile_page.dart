@@ -111,9 +111,9 @@ class ProfilePage extends StatelessWidget {
                                 width: getProportionateScreenWidth(45),
                                 height: getProportionateScreenHeight(45),
                               ),
-                              title: Text(
-                                'votedProjects'.tr(),
-                                style: const TextStyle(fontSize: 18),
+                              title: const Text(
+                                'Проекты',
+                                style: TextStyle(fontSize: 18),
                               ),
                               trailing: const Icon(
                                 Icons.arrow_forward_ios,

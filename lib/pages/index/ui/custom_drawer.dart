@@ -20,6 +20,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     return BaseProvider<CustomDrawerProvider>(
+        onReady: (p0) => p0.init(context),
         model: CustomDrawerProvider(),
         builder: (context, model, child) {
           return Drawer(
@@ -95,7 +96,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                               vertical: getProportionateScreenHeight(30),
                             ),
                             decoration: BoxDecoration(
-                              color: model.langGroupValue == "KZ"
+                              color: model.langGroupValue == "KK"
                                   ? AppColors.primaryColor
                                   : null,
                               border: Border.all(

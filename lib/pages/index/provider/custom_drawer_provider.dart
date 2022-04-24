@@ -14,12 +14,18 @@ class CustomDrawerProvider extends BaseBloc {
   ];
 
   Locale? _locale;
-  String langGroupValue = 'EN';
+  String? langGroupValue;
 
   init(context) {
     setLoading(true);
     size = MediaQuery.of(context).size;
     SizeConfig().init(context);
+    langGroupValue =
+        EasyLocalization.of(context)!.currentLocale!.languageCode.toUpperCase();
+    log(EasyLocalization.of(context)!
+        .currentLocale!
+        .languageCode
+        .toUpperCase());
     setLoading(false);
   }
 
@@ -27,7 +33,7 @@ class CustomDrawerProvider extends BaseBloc {
     switch (EasyLocalization.of(context)!.currentLocale!.languageCode) {
       case "kk":
         setGroupedLangValue(langs[0]);
-        log(langGroupValue);
+        log(langGroupValue!);
         break;
       case "ru":
         setGroupedLangValue(langs[1]);
