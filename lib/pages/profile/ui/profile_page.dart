@@ -21,7 +21,7 @@ class ProfilePage extends StatelessWidget {
       builder: (context, model, child) {
         return Scaffold(
           body: model.isLoading
-              ? LoadinView()
+              ? const LoadinView()
               : Stack(
                   children: [
                     Positioned(
@@ -55,10 +55,10 @@ class ProfilePage extends StatelessWidget {
                                     getProportionateScreenWidth(30)),
                                 Column(
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Asylzhan Ubaidullaev',
                                       // getIt.get<ProfileProvider>().name,
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
                                       ),
