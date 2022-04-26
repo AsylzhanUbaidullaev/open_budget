@@ -3,7 +3,7 @@ import 'package:open_budget/base/base_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:open_budget/pages/profile/ui/change_profile.dart';
 import 'package:open_budget/pages/profile/ui/help.dart';
-import 'package:open_budget/pages/profile/ui/voted_projects.dart';
+import 'package:open_budget/pages/profile/ui/projects_page.dart';
 import 'package:open_budget/shared/theme.dart';
 
 class ProfileProvider extends BaseBloc {
@@ -26,7 +26,7 @@ class ProfileProvider extends BaseBloc {
 
   toVotedProjects(context) {
     Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const VotedProjects()));
+        MaterialPageRoute(builder: (context) => const ProjectsPage()));
   }
 
   List<SvgPicture> icons = [
@@ -37,7 +37,7 @@ class ProfileProvider extends BaseBloc {
 
   List<Widget> toPages = const [
     Help(),
-    VotedProjects(),
+    ProjectsPage(),
   ];
 
   List<String> titles = [

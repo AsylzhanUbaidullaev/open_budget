@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:open_budget/base/base_provider.dart';
 import 'package:open_budget/pages/profile/provider/profile_provider.dart';
-// import 'package:open_budget/service_locator.dart';
 import 'package:open_budget/shared/size_config.dart';
 import 'package:open_budget/shared/theme.dart';
 import 'package:open_budget/shared/ui_helper.dart';
@@ -69,9 +68,10 @@ class ProfilePage extends StatelessWidget {
                                       '+7 747 633 8071',
                                       textAlign: TextAlign.start,
                                       style: TextStyle(
-                                          fontSize: 14,
-                                          color: AppColors.darkGreyColor),
-                                    )
+                                        fontSize: 14,
+                                        color: AppColors.darkGreyColor,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ],
@@ -86,13 +86,12 @@ class ProfilePage extends StatelessWidget {
                               width: getProportionateScreenWidth(450),
                             ),
                             UIHelper.verticalSpace(
-                                getProportionateScreenHeight(100)),
+                              getProportionateScreenHeight(100),
+                            ),
                             ListTile(
-                              onTap: () {
-                                model.toHelpPage(context);
-                              },
+                              onTap: () => model.toHelpPage(context),
                               leading: SvgPicture.asset(
-                                AppSvgImages.ic_help,
+                                AppSvgImages.help_ic,
                                 width: getProportionateScreenWidth(45),
                                 height: getProportionateScreenHeight(45),
                               ),
@@ -106,17 +105,15 @@ class ProfilePage extends StatelessWidget {
                               ),
                             ),
                             ListTile(
-                              onTap: () {
-                                model.toVotedProjects(context);
-                              },
+                              onTap: () => model.toVotedProjects(context),
                               leading: SvgPicture.asset(
                                 AppSvgImages.ic_check,
                                 width: getProportionateScreenWidth(45),
                                 height: getProportionateScreenHeight(45),
                               ),
-                              title: Text(
-                                'votedProjects'.tr(),
-                                style: const TextStyle(fontSize: 18),
+                              title: const Text(
+                                'Проекты',
+                                style: TextStyle(fontSize: 18),
                               ),
                               trailing: const Icon(
                                 Icons.arrow_forward_ios,
@@ -147,6 +144,25 @@ class ProfilePage extends StatelessWidget {
                 ),
         );
       },
+    );
+  }
+
+  ListTile _buildListTile(String svg, String text, Function ontap) {
+    return ListTile(
+      onTap: () => ontap(),
+      leading: SvgPicture.asset(
+        svg,
+        width: getProportionateScreenWidth(45),
+        height: getProportionateScreenHeight(45),
+      ),
+      title: Text(
+        text,
+        style: const TextStyle(fontSize: 18),
+      ),
+      trailing: const Icon(
+        Icons.arrow_forward_ios,
+        color: AppColors.primaryColor,
+      ),
     );
   }
 }

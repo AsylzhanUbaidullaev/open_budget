@@ -121,19 +121,14 @@ class _ProjectsArchivePageState extends State<ProjectsArchivePage> {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: getProportionateScreenHeight(30),
-                  ),
                 ],
               ),
-            ),
-            SizedBox(
-              height: getProportionateScreenHeight(20),
             ),
             Expanded(
               child: ListView.separated(
                 padding: EdgeInsets.only(
-                  bottom: getProportionateScreenHeight(250),
+                  bottom: getProportionateScreenHeight(50),
+                  top: getProportionateScreenHeight(50),
                 ),
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
