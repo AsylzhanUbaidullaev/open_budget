@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:open_budget/base/base_provider.dart';
+import 'package:open_budget/pages/home/ui/submit_project_page.dart';
 import 'package:open_budget/pages/home/ui/vote_page.dart';
 import 'package:open_budget/pages/index/provider/index_provider.dart';
 import 'package:open_budget/pages/map/ui/map.dart';
@@ -38,19 +39,27 @@ class IndexPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     const Spacer(),
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: getProportionateScreenWidth(30),
-                        vertical: getProportionateScreenHeight(30),
+                    InkWell(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const SubmitProject(),
+                        ),
                       ),
-                      decoration: BoxDecoration(
-                        color: AppColors.primaryColor,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: DefaultText(
-                        text: 'projectSubmission'.tr(),
-                        fontSize: 32,
-                        color: AppColors.whiteColor,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: getProportionateScreenWidth(30),
+                          vertical: getProportionateScreenHeight(30),
+                        ),
+                        decoration: BoxDecoration(
+                          color: AppColors.primaryColor,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: DefaultText(
+                          text: 'projectSubmission'.tr(),
+                          fontSize: 32,
+                          color: AppColors.whiteColor,
+                        ),
                       ),
                     ),
                     const Spacer(
@@ -104,7 +113,7 @@ class IndexPage extends StatelessWidget {
           //                   context: context,
           //                   backgroundColor:
           //                       AppColors.whatsAppColor.withOpacity(0),
-                            // builder: (_) => Categories(model: model),
+          // builder: (_) => Categories(model: model),
           //                 ),
           //                 child: Container(
           //                   color: AppColors.whatsAppColor.withOpacity(0),

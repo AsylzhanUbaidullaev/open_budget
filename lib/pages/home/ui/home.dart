@@ -31,21 +31,21 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
+                SizedBox(
                   width: getProportionateScreenWidth(180),
                   child: DefaultText(
                     text: 'projectsSubmitted'.tr(),
                     fontSize: 32,
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: getProportionateScreenWidth(180),
                   child: DefaultText(
                     text: 'votingFriendlyProjects'.tr(),
                     fontSize: 32,
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: getProportionateScreenWidth(180),
                   child: DefaultText(
                     text: 'projectsSubmittedForImplementation'.tr(),
@@ -60,21 +60,21 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
+                SizedBox(
                   width: getProportionateScreenWidth(180),
                   child: DefaultText(
                     text: '934',
                     fontSize: 48,
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: getProportionateScreenWidth(180),
                   child: DefaultText(
                     text: '207',
                     fontSize: 48,
                   ),
                 ),
-                Container(
+                SizedBox(
                   width: getProportionateScreenWidth(180),
                   child: DefaultText(
                     text: '47',
