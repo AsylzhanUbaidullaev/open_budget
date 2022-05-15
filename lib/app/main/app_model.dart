@@ -1,18 +1,26 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:connectivity/connectivity.dart';
+// import 'package:connectivity/connectivity.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:open_budget/base/base_bloc.dart';
 import 'package:open_budget/pages/index/ui/index_page.dart';
 
 class MyAppModel extends BaseBloc {
+<<<<<<< HEAD
   // final UserData _userData = UserData();
   StreamController<ConnectivityResult> connectionStatusController =
       StreamController<ConnectivityResult>();
   final bool _isAuthenticated = false;
   final _isOnboardingSkipped = false;
+=======
+  final UserData _userData = UserData();
+  // StreamController<ConnectivityResult> connectionStatusController =
+  //     StreamController<ConnectivityResult>();
+  var _isAuthenticated = false;
+  var _isOnboardingSkipped = false;
+>>>>>>> d214437f40ab1337d8820eb740151a55aeda9669
 
   bool get isAuthenticated => _isAuthenticated;
   bool get isOnboardingSkipped => _isOnboardingSkipped;
@@ -21,15 +29,15 @@ class MyAppModel extends BaseBloc {
     log('init called');
     await checkOnboardinIsSkipped();
     await EasyLocalization.ensureInitialized();
-    var result = await Connectivity().checkConnectivity();
-    log('result from init is: $result');
-    connectionStatusController.add(result);
+    // var result = await Connectivity().checkConnectivity();
+    // log('result from init is: $result');
+    // connectionStatusController.add(result);
     // Subscribe to the connectivity Chanaged Steam
-    Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      // Use Connectivity() here to gather more info if you need t
-      log('Internet result is: $result');
-      connectionStatusController.add(result);
-    });
+    // Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+    //   // Use Connectivity() here to gather more info if you need t
+    //   log('Internet result is: $result');
+    //   connectionStatusController.add(result);
+    // });
   }
 
   Future<void> checkOnboardinIsSkipped() async {

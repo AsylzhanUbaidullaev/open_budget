@@ -1,4 +1,4 @@
-import 'package:connectivity/connectivity.dart';
+// import 'package:connectivity/connectivity.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:open_budget/app/main/app_model.dart';
@@ -17,30 +17,52 @@ class MyApp extends StatelessWidget {
     return BaseProvider<MyAppModel>(
       model: model,
       builder: (context, model, child) {
-        return StreamBuilder<Object>(
-          stream: model.connectionStatusController.stream,
-          builder: (context, snapshot) {
-            return MaterialApp(
-              localizationsDelegates: context.localizationDelegates,
-              supportedLocales: context.supportedLocales,
-              locale: context.locale,
-              debugShowCheckedModeBanner: false,
-              title: 'Open Budget',
-              navigatorKey: GlobalVariable.navState,
-              theme: ThemeData(
-                primaryColor: AppColors.primaryColor,
-                bottomSheetTheme: BottomSheetThemeData(
-                  backgroundColor: AppColors.primaryColor.withOpacity(0),
-                ),
-                // backgroundColor: Colors.white,
-                fontFamily: 'Manrope',
-              ),
-              home: snapshot.data == ConnectivityResult.none ||
-                      snapshot.data == null
-                  ? const NoInternetScreen()
-                  : model.getHomeScreen(),
-            );
-          },
+        // return StreamBuilder<Object>(
+        //   stream: model.connectionStatusController.stream,
+        //   builder: (context, snapshot) {
+        //     return MaterialApp(
+        //       localizationsDelegates: context.localizationDelegates,
+        //       supportedLocales: context.supportedLocales,
+        //       locale: context.locale,
+        //       debugShowCheckedModeBanner: false,
+        //       title: 'Open Budget',
+        //       navigatorKey: GlobalVariable.navState,
+        //       theme: ThemeData(
+        //         primaryColor: AppColors.primaryColor,
+        //         bottomSheetTheme: BottomSheetThemeData(
+        //           backgroundColor: AppColors.primaryColor.withOpacity(0),
+        //         ),
+        //         // backgroundColor: Colors.white,
+        //         fontFamily: 'Manrope',
+        //       ),
+        //       home: model.getHomeScreen(),
+        //       // home: snapshot.data == ConnectivityResult.none ||
+        //       //         snapshot.data == null
+        //       //     ? const NoInternetScreen()
+        //       //     : model.getHomeScreen(),
+        //     );
+        //   },
+        // );
+        return MaterialApp(
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          debugShowCheckedModeBanner: false,
+          title: 'Open Budget',
+          navigatorKey: GlobalVariable.navState,
+          theme: ThemeData(
+            primaryColor: AppColors.primaryColor,
+            bottomSheetTheme: BottomSheetThemeData(
+              backgroundColor: AppColors.primaryColor.withOpacity(0),
+            ),
+            // backgroundColor: Colors.white,
+            fontFamily: 'Manrope',
+          ),
+          home: model.getHomeScreen(),
+          // home: snapshot.data == ConnectivityResult.none ||
+          //         snapshot.data == null
+          //     ? const NoInternetScreen()
+          //     : model.getHomeScreen(),
         );
       },
     );
