@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:connectivity/connectivity.dart';
+// import 'package:connectivity/connectivity.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:open_budget/base/base_bloc.dart';
@@ -13,8 +13,8 @@ import 'user_data.dart';
 
 class MyAppModel extends BaseBloc {
   final UserData _userData = UserData();
-  StreamController<ConnectivityResult> connectionStatusController =
-      StreamController<ConnectivityResult>();
+  // StreamController<ConnectivityResult> connectionStatusController =
+  //     StreamController<ConnectivityResult>();
   var _isAuthenticated = false;
   var _isOnboardingSkipped = false;
 
@@ -25,15 +25,15 @@ class MyAppModel extends BaseBloc {
     log('init called');
     await checkOnboardinIsSkipped();
     await EasyLocalization.ensureInitialized();
-    var result = await Connectivity().checkConnectivity();
-    log('result from init is: $result');
-    connectionStatusController.add(result);
+    // var result = await Connectivity().checkConnectivity();
+    // log('result from init is: $result');
+    // connectionStatusController.add(result);
     // Subscribe to the connectivity Chanaged Steam
-    Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      // Use Connectivity() here to gather more info if you need t
-      log('Internet result is: $result');
-      connectionStatusController.add(result);
-    });
+    // Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+    //   // Use Connectivity() here to gather more info if you need t
+    //   log('Internet result is: $result');
+    //   connectionStatusController.add(result);
+    // });
   }
 
   Future<void> checkOnboardinIsSkipped() async {

@@ -184,9 +184,9 @@ class Login extends StatelessWidget {
                                           model.toRegistration(context);
                                         }
                                       : () {
-                                          showCustomToast(
-                                              // AppLocalizations.of(context)!.translate("phone_number_empty_or_format")!,
-                                              'Телефон номер заполнен не правильно');
+                                          // showCustomToast(
+                                          //     // AppLocalizations.of(context)!.translate("phone_number_empty_or_format")!,
+                                          //     'Телефон номер заполнен не правильно');
                                         },
                                 ),
                               ),

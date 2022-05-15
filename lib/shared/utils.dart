@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:open_budget/shared/custom_dialog.dart';
 import 'package:open_budget/shared/theme.dart';
 
@@ -26,18 +26,18 @@ Future showDialogCustom(
   );
 }
 
-showCustomToast(String msg) {
-  return Fluttertoast.showToast(
-    msg: msg,
-    toastLength: Toast.LENGTH_LONG,
-    gravity: ToastGravity.SNACKBAR,
-    timeInSecForIosWeb: 2,
-    backgroundColor: AppColors.primaryColor,
-    textColor: AppColors.systemWhiteColor,
-    fontSize: 16.0,
-    webPosition: "center",
-  );
-}
+// showCustomToast(String msg) {
+//   return Fluttertoast.showToast(
+//     msg: msg,
+//     toastLength: Toast.LENGTH_LONG,
+//     gravity: ToastGravity.SNACKBAR,
+//     timeInSecForIosWeb: 2,
+//     backgroundColor: AppColors.primaryColor,
+//     textColor: AppColors.systemWhiteColor,
+//     fontSize: 16.0,
+//     webPosition: "center",
+//   );
+// }
 
 showCustomSnackBar({required BuildContext context, required String message}) {
   ScaffoldMessenger.of(context).showSnackBar(
