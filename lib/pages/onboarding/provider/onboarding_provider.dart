@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:open_budget/base/base_bloc.dart';
 import 'package:open_budget/pages/login/ui/login.dart';
 
@@ -12,7 +11,7 @@ class OnboardingProvider extends BaseBloc {
     _pageNumber += 1;
     pageController.animateToPage(
       _pageNumber,
-      duration: Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 1500),
       curve: Curves.fastOutSlowIn,
     );
     notifyListeners();
@@ -22,7 +21,7 @@ class OnboardingProvider extends BaseBloc {
     _pageNumber -= 1;
     pageController.animateToPage(
       _pageNumber,
-      duration: Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 1500),
       curve: Curves.fastOutSlowIn,
     );
     notifyListeners();
@@ -37,7 +36,7 @@ class OnboardingProvider extends BaseBloc {
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
-          builder: (context) => Login(),
+          builder: (context) => const Login(),
         ),
         (route) => false);
   }
