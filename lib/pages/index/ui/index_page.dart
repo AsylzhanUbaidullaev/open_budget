@@ -1,11 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:open_budget/base/base_provider.dart';
-<<<<<<< HEAD
 import 'package:open_budget/pages/home/ui/submit_project_page.dart';
-=======
-import 'package:open_budget/pages/home/ui/offer_project.dart';
->>>>>>> d214437f40ab1337d8820eb740151a55aeda9669
 import 'package:open_budget/pages/home/ui/vote_page.dart';
 import 'package:open_budget/pages/index/provider/index_provider.dart';
 import 'package:open_budget/pages/map/ui/map.dart';
@@ -43,19 +39,11 @@ class IndexPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     const Spacer(),
-<<<<<<< HEAD
                     InkWell(
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (_) => const SubmitProject(),
-=======
-                    GestureDetector(
-                      onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => OfferProject(),
->>>>>>> d214437f40ab1337d8820eb740151a55aeda9669
                         ),
                       ),
                       child: Container(
@@ -107,7 +95,7 @@ class IndexPage extends StatelessWidget {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
           // bottomSheet: model.navIndex == 3
-          //     ? Container(
+          //      Container(
           //         padding: EdgeInsets.symmetric(
           //           horizontal: getProportionateScreenWidth(40),
           //           vertical: getProportionateScreenHeight(40),

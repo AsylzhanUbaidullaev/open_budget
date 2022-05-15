@@ -4,23 +4,16 @@ import 'dart:developer';
 // import 'package:connectivity/connectivity.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:open_budget/app/main/user_data.dart';
 import 'package:open_budget/base/base_bloc.dart';
 import 'package:open_budget/pages/index/ui/index_page.dart';
 
 class MyAppModel extends BaseBloc {
-<<<<<<< HEAD
-  // final UserData _userData = UserData();
-  StreamController<ConnectivityResult> connectionStatusController =
-      StreamController<ConnectivityResult>();
-  final bool _isAuthenticated = false;
-  final _isOnboardingSkipped = false;
-=======
   final UserData _userData = UserData();
   // StreamController<ConnectivityResult> connectionStatusController =
   //     StreamController<ConnectivityResult>();
   var _isAuthenticated = false;
   var _isOnboardingSkipped = false;
->>>>>>> d214437f40ab1337d8820eb740151a55aeda9669
 
   bool get isAuthenticated => _isAuthenticated;
   bool get isOnboardingSkipped => _isOnboardingSkipped;

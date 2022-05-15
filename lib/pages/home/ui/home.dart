@@ -33,101 +33,6 @@ class _HomePageState extends State<HomePage> {
             final projects = snapshot.data ?? [];
             return Column(
               children: [
-<<<<<<< HEAD
-                SizedBox(
-                  width: getProportionateScreenWidth(180),
-                  child: DefaultText(
-                    text: 'projectsSubmitted'.tr(),
-                    fontSize: 32,
-                  ),
-                ),
-                SizedBox(
-                  width: getProportionateScreenWidth(180),
-                  child: DefaultText(
-                    text: 'votingFriendlyProjects'.tr(),
-                    fontSize: 32,
-                  ),
-                ),
-                SizedBox(
-                  width: getProportionateScreenWidth(180),
-                  child: DefaultText(
-                    text: 'projectsSubmittedForImplementation'.tr(),
-                    fontSize: 32,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: getProportionateScreenHeight(10),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(
-                  width: getProportionateScreenWidth(180),
-                  child: DefaultText(
-                    text: '934',
-                    fontSize: 48,
-                  ),
-                ),
-                SizedBox(
-                  width: getProportionateScreenWidth(180),
-                  child: DefaultText(
-                    text: '207',
-                    fontSize: 48,
-                  ),
-                ),
-                SizedBox(
-                  width: getProportionateScreenWidth(180),
-                  child: DefaultText(
-                    text: '47',
-                    fontSize: 48,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: getProportionateScreenHeight(60),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: List.generate(
-                5,
-                (index) => DefaultText(
-                  text: '14.03.2022',
-                  fontSize: 24,
-                  color: index != 4
-                      ? AppColors.systemLightGrayColor
-                      : AppColors.primaryColor,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: getProportionateScreenHeight(10),
-            ),
-            SizedBox(
-              height: getProportionateScreenHeight(32),
-              child: Stack(
-                children: [
-                  Center(
-                    child: Container(
-                      width: double.maxFinite,
-                      height: getProportionateScreenHeight(20),
-                      color: AppColors.primaryColor,
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: List.generate(
-                      5,
-                      (index) => Container(
-                        width: getProportionateScreenWidth(30),
-                        height: getProportionateScreenHeight(40),
-                        decoration: BoxDecoration(
-                          color: AppColors.whiteColor,
-                          borderRadius: BorderRadius.circular(188),
-                          border: Border.all(color: AppColors.primaryColor),
-=======
                 Expanded(
                   flex: 2,
                   child: ListView.separated(
@@ -149,7 +54,6 @@ class _HomePageState extends State<HomePage> {
                           base64Decode(
                             projects[index].image,
                           ),
->>>>>>> d214437f40ab1337d8820eb740151a55aeda9669
                         ),
                       ],
                     ),
