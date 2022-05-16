@@ -1,10 +1,12 @@
 import 'package:drift/drift.dart' as dr;
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:open_budget/base/base_provider.dart';
 import 'package:open_budget/data/database.dart';
-import 'package:open_budget/pages/home/provider/home_provider.dart';
 import 'package:open_budget/pages/home/provider/offer_provider.dart';
+import 'package:open_budget/shared/size_config.dart';
 import 'package:open_budget/shared/theme.dart';
+import 'package:open_budget/widgets/default_text.dart';
 import 'package:provider/provider.dart';
 
 class OfferProject extends StatefulWidget {
@@ -51,6 +53,7 @@ class _OfferProjectState extends State<OfferProject> {
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: ListClumn(database, model),
+            
           ),
         );
       },
@@ -90,20 +93,26 @@ class _OfferProjectState extends State<OfferProject> {
           }),
         ),
         ElevatedButton(
-          onPressed: () => model.pickImage(),
+          onPressed: () async => await model.pickImage(),
           child: const Text('Pick Image'),
         ),
         // model.imageBytes == null
         //     ? const Text('No Image')
         //     : Image.memory(model.imageBytes!),
-       model.isLoading
-                ? CircularProgressIndicator()
-                : Expanded(
-                    child: SingleChildScrollView(
-                      // child: SelectableText(model.base64Image!),
-                      child: SelectableText(model.imageBytes.toString()),
-                    ),
-                  ),
+        model.isLoading
+            ? CircularProgressIndicator()
+            : Expanded(
+                child: SingleChildScrollView(
+                  // child: SelectableText(model.base64Image!),
+                  child: model.imageBytes == null
+                      ? Text('No image')
+                      : Image.memory(
+                          model.imageBytes!,
+                          width: 200,
+                          height: 200,
+                        ),
+                ),
+              ),
         ElevatedButton(
           onPressed: () {
             final project = ProjectsCompanion(
@@ -118,7 +127,9 @@ class _OfferProjectState extends State<OfferProject> {
               status: dr.Value(status),
             );
 
-            database.insertProject(project);
+            Navigator.of(context).pop(
+              database.insertProject(project),
+            );
           },
           child: Text('Save'),
         ),

@@ -54,6 +54,8 @@ class _HomePageState extends State<HomePage> {
                           base64Decode(
                             projects[index].image,
                           ),
+                          width: 200,
+                          height: 200,
                         ),
                       ],
                     ),
