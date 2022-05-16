@@ -23,7 +23,7 @@ class AppColors {
   static const Color bottomNavBgColor = Color(0xffF1F1F1);
 
   ///[_Background Colors]
-  static Color bgBlueColor = Color(0xff0D70E3).withOpacity(0.5);
+  static Color bgBlueColor = const Color(0xff0D70E3).withOpacity(0.5);
   static const Color bgColor = Color(0xffF7F7F7);
 
   ///[_Whatsapp, Telegram]
@@ -71,6 +71,7 @@ class AppSvgImages {
   static const String ic_user = 'assets/images/svg/ic_user.svg';
   static const String filters = 'assets/images/svg/filters.svg';
   static const String selection_photo = 'assets/images/svg/selection_photo.svg';
+  static const String selection = 'assets/images/svg/selection.svg';
 
   //profile
   static const String ic_lang = 'assets/images/svg/ic_language.svg';

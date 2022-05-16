@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../shared/size_config.dart';
-import '../shared/theme.dart';
 
 class DefaultText extends StatelessWidget {
   final String text;
