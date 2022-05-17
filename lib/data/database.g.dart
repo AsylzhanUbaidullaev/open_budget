@@ -18,6 +18,7 @@ class Project extends DataClass implements Insertable<Project> {
   final String address;
   final String votesCount;
   final bool status;
+  final String? files;
   Project(
       {required this.id,
       required this.description,
@@ -28,7 +29,8 @@ class Project extends DataClass implements Insertable<Project> {
       required this.price,
       required this.address,
       required this.votesCount,
-      required this.status});
+      required this.status,
+      this.files});
   factory Project.fromData(Map<String, dynamic> data, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return Project(
@@ -52,6 +54,8 @@ class Project extends DataClass implements Insertable<Project> {
           .mapFromDatabaseResponse(data['${effectivePrefix}votes_count'])!,
       status: const BoolType()
           .mapFromDatabaseResponse(data['${effectivePrefix}status'])!,
+      files: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}files']),
     );
   }
   @override
@@ -69,6 +73,9 @@ class Project extends DataClass implements Insertable<Project> {
     map['address'] = Variable<String>(address);
     map['votes_count'] = Variable<String>(votesCount);
     map['status'] = Variable<bool>(status);
+    if (!nullToAbsent || files != null) {
+      map['files'] = Variable<String?>(files);
+    }
     return map;
   }
 
@@ -85,6 +92,8 @@ class Project extends DataClass implements Insertable<Project> {
       address: Value(address),
       votesCount: Value(votesCount),
       status: Value(status),
+      files:
+          files == null && nullToAbsent ? const Value.absent() : Value(files),
     );
   }
 
@@ -103,6 +112,7 @@ class Project extends DataClass implements Insertable<Project> {
       address: serializer.fromJson<String>(json['address']),
       votesCount: serializer.fromJson<String>(json['votesCount']),
       status: serializer.fromJson<bool>(json['status']),
+      files: serializer.fromJson<String?>(json['files']),
     );
   }
   @override
@@ -119,6 +129,7 @@ class Project extends DataClass implements Insertable<Project> {
       'address': serializer.toJson<String>(address),
       'votesCount': serializer.toJson<String>(votesCount),
       'status': serializer.toJson<bool>(status),
+      'files': serializer.toJson<String?>(files),
     };
   }
 
@@ -132,7 +143,8 @@ class Project extends DataClass implements Insertable<Project> {
           String? price,
           String? address,
           String? votesCount,
-          bool? status}) =>
+          bool? status,
+          String? files}) =>
       Project(
         id: id ?? this.id,
         description: description ?? this.description,
@@ -144,6 +156,7 @@ class Project extends DataClass implements Insertable<Project> {
         address: address ?? this.address,
         votesCount: votesCount ?? this.votesCount,
         status: status ?? this.status,
+        files: files ?? this.files,
       );
   @override
   String toString() {
@@ -157,14 +170,15 @@ class Project extends DataClass implements Insertable<Project> {
           ..write('price: $price, ')
           ..write('address: $address, ')
           ..write('votesCount: $votesCount, ')
-          ..write('status: $status')
+          ..write('status: $status, ')
+          ..write('files: $files')
           ..write(')'))
         .toString();
   }
 
   @override
   int get hashCode => Object.hash(id, description, title, image, uploaderName,
-      uploaderDescription, price, address, votesCount, status);
+      uploaderDescription, price, address, votesCount, status, files);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -178,7 +192,8 @@ class Project extends DataClass implements Insertable<Project> {
           other.price == this.price &&
           other.address == this.address &&
           other.votesCount == this.votesCount &&
-          other.status == this.status);
+          other.status == this.status &&
+          other.files == this.files);
 }
 
 class ProjectsCompanion extends UpdateCompanion<Project> {
@@ -192,6 +207,7 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
   final Value<String> address;
   final Value<String> votesCount;
   final Value<bool> status;
+  final Value<String?> files;
   const ProjectsCompanion({
     this.id = const Value.absent(),
     this.description = const Value.absent(),
@@ -203,6 +219,7 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
     this.address = const Value.absent(),
     this.votesCount = const Value.absent(),
     this.status = const Value.absent(),
+    this.files = const Value.absent(),
   });
   ProjectsCompanion.insert({
     this.id = const Value.absent(),
@@ -215,6 +232,7 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
     required String address,
     required String votesCount,
     this.status = const Value.absent(),
+    this.files = const Value.absent(),
   })  : description = Value(description),
         image = Value(image),
         uploaderName = Value(uploaderName),
@@ -233,6 +251,7 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
     Expression<String>? address,
     Expression<String>? votesCount,
     Expression<bool>? status,
+    Expression<String?>? files,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -246,6 +265,7 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
       if (address != null) 'address': address,
       if (votesCount != null) 'votes_count': votesCount,
       if (status != null) 'status': status,
+      if (files != null) 'files': files,
     });
   }
 
@@ -259,7 +279,8 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
       Value<String>? price,
       Value<String>? address,
       Value<String>? votesCount,
-      Value<bool>? status}) {
+      Value<bool>? status,
+      Value<String?>? files}) {
     return ProjectsCompanion(
       id: id ?? this.id,
       description: description ?? this.description,
@@ -271,6 +292,7 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
       address: address ?? this.address,
       votesCount: votesCount ?? this.votesCount,
       status: status ?? this.status,
+      files: files ?? this.files,
     );
   }
 
@@ -307,6 +329,9 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
     if (status.present) {
       map['status'] = Variable<bool>(status.value);
     }
+    if (files.present) {
+      map['files'] = Variable<String?>(files.value);
+    }
     return map;
   }
 
@@ -322,7 +347,8 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
           ..write('price: $price, ')
           ..write('address: $address, ')
           ..write('votesCount: $votesCount, ')
-          ..write('status: $status')
+          ..write('status: $status, ')
+          ..write('files: $files')
           ..write(')'))
         .toString();
   }
@@ -411,6 +437,11 @@ class $ProjectsTable extends Projects with TableInfo<$ProjectsTable, Project> {
       requiredDuringInsert: false,
       defaultConstraints: 'CHECK (status IN (0, 1))',
       defaultValue: const Constant(false));
+  final VerificationMeta _filesMeta = const VerificationMeta('files');
+  @override
+  late final GeneratedColumn<String?> files = GeneratedColumn<String?>(
+      'files', aliasedName, true,
+      type: const StringType(), requiredDuringInsert: false);
   @override
   List<GeneratedColumn> get $columns => [
         id,
@@ -422,7 +453,8 @@ class $ProjectsTable extends Projects with TableInfo<$ProjectsTable, Project> {
         price,
         address,
         votesCount,
-        status
+        status,
+        files
       ];
   @override
   String get aliasedName => _alias ?? 'projects';
@@ -494,6 +526,10 @@ class $ProjectsTable extends Projects with TableInfo<$ProjectsTable, Project> {
       context.handle(_statusMeta,
           status.isAcceptableOrUnknown(data['status']!, _statusMeta));
     }
+    if (data.containsKey('files')) {
+      context.handle(
+          _filesMeta, files.isAcceptableOrUnknown(data['files']!, _filesMeta));
+    }
     return context;
   }
 
@@ -518,12 +554,4 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities => [projects];
-}
-
-// **************************************************************************
-// DaoGenerator
-// **************************************************************************
-
-mixin _$ProjectsDaoMixin on DatabaseAccessor<AppDatabase> {
-  $ProjectsTable get projects => attachedDatabase.projects;
 }

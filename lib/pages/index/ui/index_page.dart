@@ -197,7 +197,7 @@ class IndexPage extends StatelessWidget {
     const HomePage(),
     AboutProjectPage(),
     const ProjectMaterialsPage(),
-    const ProjectsArchivePage(),
+    ProjectsArchivePage(),
     const MapPage(),
     const ProfilePage(),
   ];

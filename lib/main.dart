@@ -26,7 +26,8 @@ void main() async {
         Locale('ru', 'RU'),
         Locale('kk', 'KK'),
       ],
-      path: 'assets/lang', // <-- change the path of the translation files
+      // TODO: change the path of the translation files
+      path: 'assets/lang', 
       fallbackLocale: const Locale('en', 'EN'),
       child: Provider<AppDatabase>(
         create: (_) => AppDatabase(),
