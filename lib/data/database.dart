@@ -18,6 +18,7 @@ class Projects extends Table {
   TextColumn get address => text().withLength(min: 1, max: 100)();
   TextColumn get votesCount => text().withLength(min: 1, max: 100)();
   BoolColumn get status => boolean().withDefault(const Constant(false))();
+  TextColumn get files => text().nullable()();
 }
 
 LazyDatabase _openConnection() {

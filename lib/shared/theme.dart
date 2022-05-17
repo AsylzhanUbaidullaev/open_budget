@@ -15,6 +15,7 @@ class AppColors {
   static const Color profileInfoLinesColor = Color(0xffEFF2F7);
   static const Color inactiveColor = Color(0xffafb2b5);
   static const Color whiteColor = Colors.white;
+  static const Color purpleColor = Color(0xff695CCD);
 
   ///[_Divider]
   static const Color dividerColor = Color(0xffE9E9E9);
@@ -71,7 +72,7 @@ class AppSvgImages {
   static const String ic_user = 'assets/images/svg/ic_user.svg';
   static const String filters = 'assets/images/svg/filters.svg';
   static const String selection_photo = 'assets/images/svg/selection_photo.svg';
-  static const String selection = 'assets/images/svg/selection.svg';
+  static const String selection = 'assets/images/svg/selections.svg';
 
   //profile
   static const String ic_lang = 'assets/images/svg/ic_language.svg';

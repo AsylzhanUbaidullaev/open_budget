@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:open_budget/base/base_provider.dart';
 import 'package:open_budget/pages/home/provider/submit_project_provider.dart';
+import 'package:open_budget/pages/home/ui/image_source_bottom_sheet.dart';
 import 'package:open_budget/shared/size_config.dart';
 import 'package:open_budget/shared/theme.dart';
 import 'package:open_budget/shared/ui_helper.dart';
@@ -16,6 +17,7 @@ class SubmitProject extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseProvider<SubmitProjectProvider>(
       model: SubmitProjectProvider(),
+      onReady: (p0) => p0.init(context),
       builder: (context, model, child) {
         return model.isLoading
             ? const LoadinView()
@@ -34,12 +36,11 @@ class SubmitProject extends StatelessWidget {
                   ),
                 ),
                 bottomSheet: InkWell(
-                  // onTap: () => Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (_) => const SubmitProject(),
-                  //   ),
-                  // ),
+                  onTap: () {
+                    if (model.formKey.currentState!.validate()) {
+                      model.insertProject(context);
+                    }
+                  },
                   child: Container(
                     width: getProportionateScreenWidth(720),
                     padding: EdgeInsets.symmetric(
@@ -66,43 +67,67 @@ class SubmitProject extends StatelessWidget {
                     horizontal: getProportionateScreenWidth(25),
                     vertical: getProportionateScreenHeight(20),
                   ),
-                  child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Form(
+                    key: model.formKey,
+                    child: ListView(
+                      // crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            vertical: getProportionateScreenHeight(20),
+                        GestureDetector(
+                          onTap: () => showModalBottomSheet(
+                            context: context,
+                            builder: (context) =>
+                                ImageSourceBottomSheet(model: model),
                           ),
-                          height: getProportionateScreenHeight(300),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: AppColors.greyColor,
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset(
-                                AppSvgImages.selection,
-                                width: getProportionateScreenWidth(170),
-                                height: getProportionateScreenHeight(150),
-                              ),
-                              UIHelper.verticalSpace(20),
-                              DefaultText(
-                                text: 'Фото орнату',
-                                fontSize: 36,
-                                fontWeight: FontWeight.w500,
-                                color: AppColors.darkGreyColor,
-                              ),
-                            ],
-                          ),
+                          child: model.imageBytes != null
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Image.memory(
+                                    model.imageBytes!,
+                                    width: double.maxFinite,
+                                    height: getProportionateScreenHeight(300),
+                                    fit: BoxFit.cover,
+                                  ),
+                                )
+                              : Container(
+                                  width: double.maxFinite,
+                                  height: getProportionateScreenHeight(300),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    color: AppColors.greyColor,
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SvgPicture.asset(
+                                        AppSvgImages.selection_photo,
+                                        width: getProportionateScreenWidth(170),
+                                        height:
+                                            getProportionateScreenHeight(150),
+                                      ),
+                                      UIHelper.verticalSpace(20),
+                                      DefaultText(
+                                        text: 'Фото орнату',
+                                        fontSize: 36,
+                                        fontWeight: FontWeight.w500,
+                                        color: AppColors.darkGreyColor,
+                                      ),
+                                    ],
+                                  ),
+                                ),
                         ),
                         UIHelper.verticalSpace(20),
                         _buildControllers('title', model.titleController),
-                        UIHelper.verticalSpace(40),
+                        SizedBox(
+                          height: getProportionateScreenHeight(20),
+                        ),
                         _buildControllers(
                             'description', model.descriptionController),
+                        SizedBox(
+                          height: getProportionateScreenHeight(20),
+                        ),
+                        _buildControllers('Author', model.authorController),
+                        UIHelper.verticalSpace(40),
+                        _buildControllers('Price', model.priceController),
                         UIHelper.verticalSpace(40),
                         DefaultText(
                           text: 'category',
@@ -182,20 +207,75 @@ class SubmitProject extends StatelessWidget {
                         _buildControllers(
                             'Address', model.descriptionController),
                         UIHelper.verticalSpace(40),
-                        Container(
-                          width: getProportionateScreenWidth(720),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: getProportionateScreenWidth(20),
-                            vertical: getProportionateScreenHeight(20),
+                        ListView.separated(
+                          padding: EdgeInsets.only(
+                            bottom: getProportionateScreenHeight(30),
                           ),
-                          decoration: BoxDecoration(
-                            color: AppColors.whiteColor,
-                            border: Border.all(color: AppColors.primaryColor),
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: model.files.length,
+                          separatorBuilder: (_, sindex) => SizedBox(
+                            height: getProportionateScreenHeight(30),
                           ),
-                          child: DefaultText(
-                            text: 'addFile',
-                            color: AppColors.primaryColor,
+                          itemBuilder: (_, index) => Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: getProportionateScreenWidth(50),
+                              vertical: getProportionateScreenHeight(30),
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              color: AppColors.whiteColor,
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: AppColors.greyColor,
+                                  offset: Offset(0, 4),
+                                  blurRadius: 1,
+                                ),
+                              ],
+                            ),
+                            child: Row(
+                              children: [
+                                SvgPicture.asset(
+                                  model.fileExtensions[index] == '.pptx'
+                                      ? AppSvgImages.power_point_ic
+                                      : model.fileExtensions[index] == '.doc'
+                                          ? AppSvgImages.word_ic
+                                          : AppSvgImages.excel_ic,
+                                ),
+                                SizedBox(
+                                  width: getProportionateScreenWidth(38),
+                                ),
+                                Expanded(
+                                  child: DefaultText(
+                                    textAlign: TextAlign.left,
+                                    text: model.fileNames[index],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
+                        ),
+                        GestureDetector(
+                          onTap: () => model.pickFile(),
+                          child: Container(
+                            width: getProportionateScreenWidth(720),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: getProportionateScreenWidth(20),
+                              vertical: getProportionateScreenHeight(20),
+                            ),
+                            decoration: BoxDecoration(
+                              color: AppColors.whiteColor,
+                              border: Border.all(color: AppColors.primaryColor),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: DefaultText(
+                              text: 'addFile',
+                              color: AppColors.primaryColor,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: getProportionateScreenHeight(150),
                         ),
                       ],
                     ),
@@ -217,7 +297,7 @@ class SubmitProject extends StatelessWidget {
         SizedBox(
           height: getProportionateScreenHeight(20),
         ),
-        TextField(
+        TextFormField(
           controller: controller,
           cursorColor: AppColors.systemBlackColor,
           decoration: InputDecoration(
@@ -234,9 +314,22 @@ class SubmitProject extends StatelessWidget {
               borderSide: BorderSide.none,
               borderRadius: BorderRadius.circular(10),
             ),
+            errorBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Colors.red,
+                width: 0.3,
+              ),
+              borderRadius: BorderRadius.circular(10),
+            ),
             fillColor: AppColors.greyColor,
             filled: true,
           ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return '* This field required';
+            }
+            return null;
+          },
         ),
       ],
     );
