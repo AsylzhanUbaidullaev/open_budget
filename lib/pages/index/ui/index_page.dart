@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:open_budget/base/base_provider.dart';
+import 'package:open_budget/pages/home/ui/offer_project.dart';
 import 'package:open_budget/pages/home/ui/submit_project_page.dart';
 import 'package:open_budget/pages/home/ui/vote_page.dart';
 import 'package:open_budget/pages/index/provider/index_provider.dart';
@@ -43,7 +44,7 @@ class IndexPage extends StatelessWidget {
                       onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const SubmitProject(),
+                          builder: (_) => OfferProject(),
                         ),
                       ),
                       child: Container(
