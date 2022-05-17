@@ -24,7 +24,7 @@ class SubmitProject extends StatelessWidget {
             : Scaffold(
                 appBar: AppBar(
                   backgroundColor: AppColors.primaryColor,
-                  title: Text('submit'),
+                  title: const Text('submit'),
                   centerTitle: true,
                   automaticallyImplyLeading: false,
                   leading: InkWell(

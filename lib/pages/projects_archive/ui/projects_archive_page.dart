@@ -68,7 +68,7 @@ class ProjectsArchivePage extends StatelessWidget {
                         height: getProportionateScreenHeight(40),
                       ),
                       itemBuilder: (_, index) {
-                        model.takeFiles(projects[index].files!);
+                        model.takeFiles(projects[index].files ?? '');
                         return Container(
                           padding: EdgeInsets.only(
                             bottom: getProportionateScreenHeight(30),
