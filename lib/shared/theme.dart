@@ -70,6 +70,7 @@ class AppSvgImages {
   static const String forest = "assets/images/svg/forest.svg";
   static const String ic_user = 'assets/images/svg/ic_user.svg';
   static const String filters = 'assets/images/svg/filters.svg';
+  static const String selection_photo = 'assets/images/svg/selection_photo.svg';
   static const String selection = 'assets/images/svg/selection.svg';
 
   //profile
