@@ -78,8 +78,9 @@ class SubmitProjectProvider extends BaseBloc {
       uploaderName: dr.Value(authorController.text),
       uploaderDescription: dr.Value(category),
       image: dr.Value(_base64Image ?? ''),
-      price: dr.Value(priceController.text),
-      address: dr.Value(district + ', ' + addressController.text),
+      price: dr.Value(int.parse(priceController.text)),
+      district: dr.Value(district),
+      address: dr.Value(addressController.text),
       votesCount: dr.Value('0'),
       files: dr.Value(filePaths),
     );
