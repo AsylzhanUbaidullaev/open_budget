@@ -14,11 +14,13 @@ class Project extends DataClass implements Insertable<Project> {
   final String image;
   final String uploaderName;
   final String uploaderDescription;
-  final String price;
+  final int price;
+  final String district;
   final String address;
   final String votesCount;
   final bool status;
   final String? files;
+  final String year;
   Project(
       {required this.id,
       required this.description,
@@ -27,10 +29,12 @@ class Project extends DataClass implements Insertable<Project> {
       required this.uploaderName,
       required this.uploaderDescription,
       required this.price,
+      required this.district,
       required this.address,
       required this.votesCount,
       required this.status,
-      this.files});
+      this.files,
+      required this.year});
   factory Project.fromData(Map<String, dynamic> data, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return Project(
@@ -46,8 +50,10 @@ class Project extends DataClass implements Insertable<Project> {
           .mapFromDatabaseResponse(data['${effectivePrefix}uploader_name'])!,
       uploaderDescription: const StringType().mapFromDatabaseResponse(
           data['${effectivePrefix}uploader_description'])!,
-      price: const StringType()
+      price: const IntType()
           .mapFromDatabaseResponse(data['${effectivePrefix}price'])!,
+      district: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}district'])!,
       address: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}address'])!,
       votesCount: const StringType()
@@ -56,6 +62,8 @@ class Project extends DataClass implements Insertable<Project> {
           .mapFromDatabaseResponse(data['${effectivePrefix}status'])!,
       files: const StringType()
           .mapFromDatabaseResponse(data['${effectivePrefix}files']),
+      year: const StringType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}year'])!,
     );
   }
   @override
@@ -69,13 +77,15 @@ class Project extends DataClass implements Insertable<Project> {
     map['image'] = Variable<String>(image);
     map['uploader_name'] = Variable<String>(uploaderName);
     map['uploader_description'] = Variable<String>(uploaderDescription);
-    map['price'] = Variable<String>(price);
+    map['price'] = Variable<int>(price);
+    map['district'] = Variable<String>(district);
     map['address'] = Variable<String>(address);
     map['votes_count'] = Variable<String>(votesCount);
     map['status'] = Variable<bool>(status);
     if (!nullToAbsent || files != null) {
       map['files'] = Variable<String?>(files);
     }
+    map['year'] = Variable<String>(year);
     return map;
   }
 
@@ -89,11 +99,13 @@ class Project extends DataClass implements Insertable<Project> {
       uploaderName: Value(uploaderName),
       uploaderDescription: Value(uploaderDescription),
       price: Value(price),
+      district: Value(district),
       address: Value(address),
       votesCount: Value(votesCount),
       status: Value(status),
       files:
           files == null && nullToAbsent ? const Value.absent() : Value(files),
+      year: Value(year),
     );
   }
 
@@ -108,11 +120,13 @@ class Project extends DataClass implements Insertable<Project> {
       uploaderName: serializer.fromJson<String>(json['uploaderName']),
       uploaderDescription:
           serializer.fromJson<String>(json['uploaderDescription']),
-      price: serializer.fromJson<String>(json['price']),
+      price: serializer.fromJson<int>(json['price']),
+      district: serializer.fromJson<String>(json['district']),
       address: serializer.fromJson<String>(json['address']),
       votesCount: serializer.fromJson<String>(json['votesCount']),
       status: serializer.fromJson<bool>(json['status']),
       files: serializer.fromJson<String?>(json['files']),
+      year: serializer.fromJson<String>(json['year']),
     );
   }
   @override
@@ -125,11 +139,13 @@ class Project extends DataClass implements Insertable<Project> {
       'image': serializer.toJson<String>(image),
       'uploaderName': serializer.toJson<String>(uploaderName),
       'uploaderDescription': serializer.toJson<String>(uploaderDescription),
-      'price': serializer.toJson<String>(price),
+      'price': serializer.toJson<int>(price),
+      'district': serializer.toJson<String>(district),
       'address': serializer.toJson<String>(address),
       'votesCount': serializer.toJson<String>(votesCount),
       'status': serializer.toJson<bool>(status),
       'files': serializer.toJson<String?>(files),
+      'year': serializer.toJson<String>(year),
     };
   }
 
@@ -140,11 +156,13 @@ class Project extends DataClass implements Insertable<Project> {
           String? image,
           String? uploaderName,
           String? uploaderDescription,
-          String? price,
+          int? price,
+          String? district,
           String? address,
           String? votesCount,
           bool? status,
-          String? files}) =>
+          String? files,
+          String? year}) =>
       Project(
         id: id ?? this.id,
         description: description ?? this.description,
@@ -153,10 +171,12 @@ class Project extends DataClass implements Insertable<Project> {
         uploaderName: uploaderName ?? this.uploaderName,
         uploaderDescription: uploaderDescription ?? this.uploaderDescription,
         price: price ?? this.price,
+        district: district ?? this.district,
         address: address ?? this.address,
         votesCount: votesCount ?? this.votesCount,
         status: status ?? this.status,
         files: files ?? this.files,
+        year: year ?? this.year,
       );
   @override
   String toString() {
@@ -168,17 +188,31 @@ class Project extends DataClass implements Insertable<Project> {
           ..write('uploaderName: $uploaderName, ')
           ..write('uploaderDescription: $uploaderDescription, ')
           ..write('price: $price, ')
+          ..write('district: $district, ')
           ..write('address: $address, ')
           ..write('votesCount: $votesCount, ')
           ..write('status: $status, ')
-          ..write('files: $files')
+          ..write('files: $files, ')
+          ..write('year: $year')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, description, title, image, uploaderName,
-      uploaderDescription, price, address, votesCount, status, files);
+  int get hashCode => Object.hash(
+      id,
+      description,
+      title,
+      image,
+      uploaderName,
+      uploaderDescription,
+      price,
+      district,
+      address,
+      votesCount,
+      status,
+      files,
+      year);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -190,10 +224,12 @@ class Project extends DataClass implements Insertable<Project> {
           other.uploaderName == this.uploaderName &&
           other.uploaderDescription == this.uploaderDescription &&
           other.price == this.price &&
+          other.district == this.district &&
           other.address == this.address &&
           other.votesCount == this.votesCount &&
           other.status == this.status &&
-          other.files == this.files);
+          other.files == this.files &&
+          other.year == this.year);
 }
 
 class ProjectsCompanion extends UpdateCompanion<Project> {
@@ -203,11 +239,13 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
   final Value<String> image;
   final Value<String> uploaderName;
   final Value<String> uploaderDescription;
-  final Value<String> price;
+  final Value<int> price;
+  final Value<String> district;
   final Value<String> address;
   final Value<String> votesCount;
   final Value<bool> status;
   final Value<String?> files;
+  final Value<String> year;
   const ProjectsCompanion({
     this.id = const Value.absent(),
     this.description = const Value.absent(),
@@ -216,10 +254,12 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
     this.uploaderName = const Value.absent(),
     this.uploaderDescription = const Value.absent(),
     this.price = const Value.absent(),
+    this.district = const Value.absent(),
     this.address = const Value.absent(),
     this.votesCount = const Value.absent(),
     this.status = const Value.absent(),
     this.files = const Value.absent(),
+    this.year = const Value.absent(),
   });
   ProjectsCompanion.insert({
     this.id = const Value.absent(),
@@ -228,16 +268,19 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
     required String image,
     required String uploaderName,
     required String uploaderDescription,
-    required String price,
+    required int price,
+    required String district,
     required String address,
     required String votesCount,
     this.status = const Value.absent(),
     this.files = const Value.absent(),
+    this.year = const Value.absent(),
   })  : description = Value(description),
         image = Value(image),
         uploaderName = Value(uploaderName),
         uploaderDescription = Value(uploaderDescription),
         price = Value(price),
+        district = Value(district),
         address = Value(address),
         votesCount = Value(votesCount);
   static Insertable<Project> custom({
@@ -247,11 +290,13 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
     Expression<String>? image,
     Expression<String>? uploaderName,
     Expression<String>? uploaderDescription,
-    Expression<String>? price,
+    Expression<int>? price,
+    Expression<String>? district,
     Expression<String>? address,
     Expression<String>? votesCount,
     Expression<bool>? status,
     Expression<String?>? files,
+    Expression<String>? year,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -262,10 +307,12 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
       if (uploaderDescription != null)
         'uploader_description': uploaderDescription,
       if (price != null) 'price': price,
+      if (district != null) 'district': district,
       if (address != null) 'address': address,
       if (votesCount != null) 'votes_count': votesCount,
       if (status != null) 'status': status,
       if (files != null) 'files': files,
+      if (year != null) 'year': year,
     });
   }
 
@@ -276,11 +323,13 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
       Value<String>? image,
       Value<String>? uploaderName,
       Value<String>? uploaderDescription,
-      Value<String>? price,
+      Value<int>? price,
+      Value<String>? district,
       Value<String>? address,
       Value<String>? votesCount,
       Value<bool>? status,
-      Value<String?>? files}) {
+      Value<String?>? files,
+      Value<String>? year}) {
     return ProjectsCompanion(
       id: id ?? this.id,
       description: description ?? this.description,
@@ -289,10 +338,12 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
       uploaderName: uploaderName ?? this.uploaderName,
       uploaderDescription: uploaderDescription ?? this.uploaderDescription,
       price: price ?? this.price,
+      district: district ?? this.district,
       address: address ?? this.address,
       votesCount: votesCount ?? this.votesCount,
       status: status ?? this.status,
       files: files ?? this.files,
+      year: year ?? this.year,
     );
   }
 
@@ -318,7 +369,10 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
       map['uploader_description'] = Variable<String>(uploaderDescription.value);
     }
     if (price.present) {
-      map['price'] = Variable<String>(price.value);
+      map['price'] = Variable<int>(price.value);
+    }
+    if (district.present) {
+      map['district'] = Variable<String>(district.value);
     }
     if (address.present) {
       map['address'] = Variable<String>(address.value);
@@ -331,6 +385,9 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
     }
     if (files.present) {
       map['files'] = Variable<String?>(files.value);
+    }
+    if (year.present) {
+      map['year'] = Variable<String>(year.value);
     }
     return map;
   }
@@ -345,10 +402,12 @@ class ProjectsCompanion extends UpdateCompanion<Project> {
           ..write('uploaderName: $uploaderName, ')
           ..write('uploaderDescription: $uploaderDescription, ')
           ..write('price: $price, ')
+          ..write('district: $district, ')
           ..write('address: $address, ')
           ..write('votesCount: $votesCount, ')
           ..write('status: $status, ')
-          ..write('files: $files')
+          ..write('files: $files, ')
+          ..write('year: $year')
           ..write(')'))
         .toString();
   }
@@ -407,10 +466,15 @@ class $ProjectsTable extends Projects with TableInfo<$ProjectsTable, Project> {
           requiredDuringInsert: true);
   final VerificationMeta _priceMeta = const VerificationMeta('price');
   @override
-  late final GeneratedColumn<String?> price = GeneratedColumn<String?>(
+  late final GeneratedColumn<int?> price = GeneratedColumn<int?>(
       'price', aliasedName, false,
+      type: const IntType(), requiredDuringInsert: true);
+  final VerificationMeta _districtMeta = const VerificationMeta('district');
+  @override
+  late final GeneratedColumn<String?> district = GeneratedColumn<String?>(
+      'district', aliasedName, false,
       additionalChecks:
-          GeneratedColumn.checkTextLength(minTextLength: 1, maxTextLength: 30),
+          GeneratedColumn.checkTextLength(minTextLength: 1, maxTextLength: 40),
       type: const StringType(),
       requiredDuringInsert: true);
   final VerificationMeta _addressMeta = const VerificationMeta('address');
@@ -442,6 +506,13 @@ class $ProjectsTable extends Projects with TableInfo<$ProjectsTable, Project> {
   late final GeneratedColumn<String?> files = GeneratedColumn<String?>(
       'files', aliasedName, true,
       type: const StringType(), requiredDuringInsert: false);
+  final VerificationMeta _yearMeta = const VerificationMeta('year');
+  @override
+  late final GeneratedColumn<String?> year = GeneratedColumn<String?>(
+      'year', aliasedName, false,
+      type: const StringType(),
+      requiredDuringInsert: false,
+      defaultValue: const Constant('2022'));
   @override
   List<GeneratedColumn> get $columns => [
         id,
@@ -451,10 +522,12 @@ class $ProjectsTable extends Projects with TableInfo<$ProjectsTable, Project> {
         uploaderName,
         uploaderDescription,
         price,
+        district,
         address,
         votesCount,
         status,
-        files
+        files,
+        year
       ];
   @override
   String get aliasedName => _alias ?? 'projects';
@@ -508,6 +581,12 @@ class $ProjectsTable extends Projects with TableInfo<$ProjectsTable, Project> {
     } else if (isInserting) {
       context.missing(_priceMeta);
     }
+    if (data.containsKey('district')) {
+      context.handle(_districtMeta,
+          district.isAcceptableOrUnknown(data['district']!, _districtMeta));
+    } else if (isInserting) {
+      context.missing(_districtMeta);
+    }
     if (data.containsKey('address')) {
       context.handle(_addressMeta,
           address.isAcceptableOrUnknown(data['address']!, _addressMeta));
@@ -529,6 +608,10 @@ class $ProjectsTable extends Projects with TableInfo<$ProjectsTable, Project> {
     if (data.containsKey('files')) {
       context.handle(
           _filesMeta, files.isAcceptableOrUnknown(data['files']!, _filesMeta));
+    }
+    if (data.containsKey('year')) {
+      context.handle(
+          _yearMeta, year.isAcceptableOrUnknown(data['year']!, _yearMeta));
     }
     return context;
   }

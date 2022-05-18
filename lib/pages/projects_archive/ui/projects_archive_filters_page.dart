@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:open_budget/base/base_provider.dart';
 import 'package:open_budget/pages/projects_archive/provider/projects_archive_filter_provider.dart';
+import 'package:open_budget/pages/projects_archive/provider/projects_archive_provider.dart';
 import 'package:open_budget/shared/size_config.dart';
 import 'package:open_budget/widgets/default_button.dart';
 import 'package:open_budget/widgets/default_text.dart';
@@ -11,12 +12,15 @@ import 'package:syncfusion_flutter_core/theme.dart';
 import '../../../shared/theme.dart';
 
 class ProjectsArchiveFiltersPage extends StatelessWidget {
-  const ProjectsArchiveFiltersPage({Key? key}) : super(key: key);
+  const ProjectsArchiveFiltersPage(
+      {Key? key, required this.projectsArchiveProvider})
+      : super(key: key);
+  final ProjectsArchiveProvider projectsArchiveProvider;
 
   @override
   Widget build(BuildContext context) {
     return BaseProvider<ProjectsArchiveFilterProvider>(
-      onReady: (p0) => p0.init(context),
+      onReady: (p0) => p0.init(context, projectsArchiveProvider),
       model: ProjectsArchiveFilterProvider(),
       builder: (context, model, child) {
         return Scaffold(
@@ -39,7 +43,8 @@ class ProjectsArchiveFiltersPage extends StatelessWidget {
             ),
             child: DefaultButton(
               text: 'Іздеу',
-              press: () => Navigator.pop(context),
+              press: () => Navigator.of(context)
+                  .pop(model.setFilters(projectsArchiveProvider)),
             ),
           ),
           body: Padding(

@@ -127,7 +127,11 @@ class SubmitProject extends StatelessWidget {
                         ),
                         _buildControllers('Author', model.authorController),
                         UIHelper.verticalSpace(40),
-                        _buildControllers('Price', model.priceController),
+                        _buildControllers(
+                          'Price',
+                          model.priceController,
+                          isNumber: true,
+                        ),
                         UIHelper.verticalSpace(40),
                         DefaultText(
                           text: 'category',
@@ -204,8 +208,7 @@ class SubmitProject extends StatelessWidget {
                           ),
                         ),
                         UIHelper.verticalSpace(40),
-                        _buildControllers(
-                            'Address', model.descriptionController),
+                        _buildControllers('Address', model.addressController),
                         UIHelper.verticalSpace(40),
                         ListView.separated(
                           padding: EdgeInsets.only(
@@ -286,7 +289,8 @@ class SubmitProject extends StatelessWidget {
     );
   }
 
-  Column _buildControllers(String name, TextEditingController controller) {
+  Column _buildControllers(String name, TextEditingController controller,
+      {bool isNumber = false}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -300,6 +304,7 @@ class SubmitProject extends StatelessWidget {
         TextFormField(
           controller: controller,
           cursorColor: AppColors.systemBlackColor,
+          keyboardType: isNumber ? TextInputType.number : TextInputType.text,
           decoration: InputDecoration(
             isDense: true,
             contentPadding: EdgeInsets.symmetric(

@@ -121,7 +121,7 @@ class _OfferProjectState extends State<OfferProject> {
               uploaderName: dr.Value(uploaderName.text),
               uploaderDescription: dr.Value(uploaderDescription.text),
               image: dr.Value(model.base64Image ?? ''),
-              price: dr.Value(price.text),
+              price: dr.Value(int.parse(price.text)),
               address: dr.Value(address.text),
               votesCount: dr.Value(votesCount.text),
               status: dr.Value(status),

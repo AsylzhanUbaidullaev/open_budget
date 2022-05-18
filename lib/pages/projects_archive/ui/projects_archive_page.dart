@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -16,27 +17,9 @@ import '../../../shared/theme.dart';
 import '../../../widgets/default_text.dart';
 
 class ProjectsArchivePage extends StatelessWidget {
-  ProjectsArchivePage({Key? key}) : super(key: key); // String year = '2019';
-  // String district = 'nauryzbay'.tr();
-  // List<String> years = [
-  //   '2019',
-  //   '2020',
-  //   '2021',
-  // ];
-  // List<String> districts = [
-  //   'nauryzbay'.tr(),
-  //   'alatau'.tr(),
-  //   'zhetysu'.tr(),
-  //   'almaly'.tr(),
-  //   'bostandyk'.tr(),
-  //   'medeu'.tr(),
-  //   'auezov'.tr(),
-  //   'turksib'.tr(),
-  // ];
+  ProjectsArchivePage({Key? key}) : super(key: key);
 
   TextEditingController searchController = TextEditingController();
-
-  // List<bool> isReadMore = List.generate(6, (index) => false);
 
   @override
   Widget build(BuildContext context) {
@@ -50,11 +33,33 @@ class ProjectsArchivePage extends StatelessWidget {
             SizedBox(
               height: getProportionateScreenHeight(40),
             ),
-            SearchBar(searchController: searchController),
+            SearchBar(
+              searchController: searchController,
+              model: model,
+            ),
             Expanded(
-              child: StreamBuilder<List<Project>>(
-                  stream: model.database!.watchAllProjects(),
+              child: FutureBuilder<List<Project>>(
+                  future: model.isAllCategory
+                      ? model.database!.getProjectsWithoutCategory(
+                          model.year,
+                          model.district,
+                          model.priceValues.start.toDouble(),
+                          model.priceValues.end.toDouble(),
+                        )
+                      : model.database!.getProjectsByFilter(
+                          model.year,
+                          model.district,
+                          model.category,
+                          model.priceValues.start.toDouble(),
+                          model.priceValues.end.toDouble(),
+                        ),
                   builder: (context, AsyncSnapshot<List<Project>> snapshot) {
+                    log('Year: ' + model.year);
+                    log('District: ' + model.district);
+                    log('Category: ' + model.category);
+                    log('MinPrice: ' +
+                        model.priceValues.start.runtimeType.toString());
+                    log('MaxPrice: ' + model.priceValues.end.toString());
                     final projects = snapshot.data ?? [];
                     return ListView.separated(
                       padding: EdgeInsets.only(
@@ -185,6 +190,8 @@ class ProjectsArchivePage extends StatelessWidget {
                                           getProportionateScreenWidth(30),
                                     ),
                                     child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         SvgPicture.asset(
                                           AppSvgImages.location_ic,
@@ -197,9 +204,9 @@ class ProjectsArchivePage extends StatelessWidget {
                                         ),
                                         Expanded(
                                           child: DefaultText(
-                                            text: projects[index]
-                                                .address
-                                                .toString(),
+                                            text: projects[index].district +
+                                                ', \n' +
+                                                projects[index].address,
                                             color:
                                                 AppColors.systemLightGrayColor,
                                             fontSize: 28,
@@ -327,12 +334,12 @@ class ProjectsArchivePage extends StatelessWidget {
 }
 
 class SearchBar extends StatelessWidget {
-  const SearchBar({
-    Key? key,
-    required this.searchController,
-  }) : super(key: key);
+  const SearchBar(
+      {Key? key, required this.searchController, required this.model})
+      : super(key: key);
 
   final TextEditingController searchController;
+  final ProjectsArchiveProvider model;
 
   @override
   Widget build(BuildContext context) {
@@ -386,7 +393,9 @@ class SearchBar extends StatelessWidget {
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const ProjectsArchiveFiltersPage(),
+                    builder: (_) => ProjectsArchiveFiltersPage(
+                      projectsArchiveProvider: model,
+                    ),
                   ),
                 ),
                 child: Container(
