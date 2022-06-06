@@ -8,7 +8,7 @@ class RegistrationProvider extends BaseBloc {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController surnameController = TextEditingController();
-  bool isButtonEnabled = false;
+  bool isButtonEnabled = true;
   String? phoneError;
 
   toLogin(context) {
@@ -19,12 +19,12 @@ class RegistrationProvider extends BaseBloc {
   }
 
   checkPhoneNumber(String value) {
-    if (value.length == 12) {
-      isButtonEnabled = true;
-      notifyListeners();
-    } else {
-      isButtonEnabled = false;
-      notifyListeners();
-    }
+    // if (value.length == 12) {
+    //   isButtonEnabled = true;
+    //   notifyListeners();
+    // } else {
+    //   isButtonEnabled = false;
+    //   notifyListeners();
+    // }
   }
 }

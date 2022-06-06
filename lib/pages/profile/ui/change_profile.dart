@@ -127,6 +127,7 @@ class ChangeProfile extends StatelessWidget {
                                   text: 'save'.tr(),
                                   press: () {
                                     // model.changeName(name);
+                                    Navigator.pop(context);
                                   },
                                 ),
                               ],

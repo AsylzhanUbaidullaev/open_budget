@@ -20,13 +20,12 @@ class ProfileProvider extends BaseBloc {
   }
 
   toHelpPage(context) {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const Help()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Help()));
   }
 
   toVotedProjects(context) {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const ProjectsPage()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const ProjectsPage()));
   }
 
   List<SvgPicture> icons = [
@@ -35,7 +34,7 @@ class ProfileProvider extends BaseBloc {
     // SvgPicture.asset(AppSvgImages.ic_logout),
   ];
 
-  List<Widget> toPages = const [
+  List<Widget> toPages = [
     Help(),
     ProjectsPage(),
   ];

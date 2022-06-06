@@ -98,17 +98,11 @@ class Login extends StatelessWidget {
                                   child: TextField(
                                     controller: model.phoneController,
                                     onSubmitted: (vale) {
-                                      model.checkPhoneNumber();
+                                      // model.checkPhoneNumber();
                                     },
                                     keyboardType: TextInputType.number,
                                     cursorColor: AppColors.systemBlackColor,
-                                    inputFormatters: [
-                                      MaskTextInputFormatter(
-                                        mask: "(###) ### ##-##",
-                                        type: MaskAutoCompletionType.lazy,
-                                        filter: {'#': RegExp(r'[0-9]')},
-                                      ),
-                                    ],
+                                    inputFormatters: [model.phoneMasked],
                                     decoration: const InputDecoration(
                                       prefixIcon: Padding(
                                         padding: EdgeInsets.only(top: 12),

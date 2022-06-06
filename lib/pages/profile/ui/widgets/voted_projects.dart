@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:open_budget/pages/profile/provider/projects_provider.dart';
 import 'package:open_budget/pages/profile/ui/voted_project_details_page.dart';
 
 import '../../../../shared/size_config.dart';
@@ -10,7 +11,8 @@ import '../../../../widgets/dash_divider.dart';
 import '../../../../widgets/default_text.dart';
 
 class VotedProjects extends StatelessWidget {
-  const VotedProjects({Key? key}) : super(key: key);
+  final ProjectsProvider? provider;
+  const VotedProjects({Key? key, required this.provider}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class VotedProjects extends StatelessWidget {
               ),
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
-              itemCount: 4,
+              itemCount: provider!.pics.length,
               separatorBuilder: (_, index) => SizedBox(
                 height: getProportionateScreenHeight(30),
               ),
@@ -62,7 +64,8 @@ class VotedProjects extends StatelessWidget {
                 child: Column(
                   children: [
                     Image.asset(
-                      AppPngImages.workout,
+                      // AppPngImages.workout,
+                      provider!.pics[index],
                       width: getProportionateScreenWidth(640),
                     ),
                     SizedBox(

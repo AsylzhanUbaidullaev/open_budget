@@ -39,9 +39,9 @@ class AppColors {
 
 class AppSvgImages {
   ///[_Onboarding]
-  static const String onboarding_1 = "assets/images/svg/splash_1.svg";
-  static const String onboarding_2 = "assets/images/svg/onboarding_2.svg";
-  static const String onboarding_3 = "assets/images/svg/onboarding_3.svg";
+  static const String onboarding_1 = "assets/images/svg/onboarding1.svg";
+  static const String onboarding_2 = "assets/images/svg/onboarding2.svg";
+  static const String onboarding_3 = "assets/images/svg/onboarding3.svg";
   static const String logo = "assets/images/svg/logo.svg";
   static const String home_ic = "assets/images/svg/home.svg";
   static const String archive_ic = "assets/images/svg/archive.svg";
@@ -97,4 +97,11 @@ class AppPngImages {
   static const String event_4 = "assets/images/png/event_4.png";
   static const String event_5 = "assets/images/png/event_5.png";
   static const String workout = "assets/images/png/workout.png";
+  static const String p1 = "assets/images/png/1.jpg";
+  static const String p2 = "assets/images/png/2.jpg";
+  static const String p3 = "assets/images/png/3.jpg";
+  static const String p4 = "assets/images/png/4.jpg";
+  static const String p5 = "assets/images/png/5.jpg";
+  static const String p6 = "assets/images/png/6.jpg";
+  static const String p7 = "assets/images/png/7.jpg";
 }

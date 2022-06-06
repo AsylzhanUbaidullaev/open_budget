@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:open_budget/pages/profile/provider/projects_provider.dart';
 import 'package:open_budget/pages/profile/ui/my_project_details_page.dart';
 import 'package:open_budget/widgets/default_text.dart';
 
@@ -10,7 +11,9 @@ import '../../../../shared/ui_helper.dart';
 import '../../../../widgets/dash_divider.dart';
 
 class MyProjects extends StatelessWidget {
-  const MyProjects({Key? key}) : super(key: key);
+  final ProjectsProvider provider;
+
+  MyProjects({Key? key, required this.provider}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +44,7 @@ class MyProjects extends StatelessWidget {
               ),
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
-              itemCount: 4,
+              itemCount: provider.pics.length,
               separatorBuilder: (_, index) => SizedBox(
                 height: getProportionateScreenHeight(30),
               ),
@@ -62,7 +65,8 @@ class MyProjects extends StatelessWidget {
                 child: Column(
                   children: [
                     Image.asset(
-                      AppPngImages.workout,
+                      // AppPngImages.workout,
+                      provider.pics[index],
                       width: getProportionateScreenWidth(640),
                     ),
                     SizedBox(

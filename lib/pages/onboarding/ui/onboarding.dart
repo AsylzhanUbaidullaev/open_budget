@@ -11,9 +11,21 @@ import '../../../widgets/custom_text_button.dart';
 
 class Onboarding extends StatelessWidget {
   List<Map<String, String?>> splashes = [
-    {'title': 'Title 1', 'text': 'text 1', 'image': AppSvgImages.onboarding_1},
-    {'title': 'Title 2', 'text': 'text 2', 'image': AppSvgImages.onboarding_1},
-    {'title': 'Title 3', 'text': 'text 3', 'image': AppSvgImages.onboarding_1},
+    {
+      'title': 'Будь инициативным',
+      'text': 'Предлагай свои проекты',
+      'image': AppSvgImages.onboarding_1
+    },
+    {
+      'title': 'Голосуй',
+      'text': 'Выбирай самые лучшие проекты',
+      'image': AppSvgImages.onboarding_2
+    },
+    {
+      'title': 'Участвуй',
+      'text': 'Улучшай свой город',
+      'image': AppSvgImages.onboarding_3
+    },
   ];
 
   @override

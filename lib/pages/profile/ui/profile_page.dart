@@ -55,7 +55,7 @@ class ProfilePage extends StatelessWidget {
                                 Column(
                                   children: [
                                     const Text(
-                                      'Asylzhan Ubaidullaev',
+                                      'Toleu Meiirlan',
                                       // getIt.get<ProfileProvider>().name,
                                       style: TextStyle(
                                         fontSize: 18,
@@ -94,6 +94,7 @@ class ProfilePage extends StatelessWidget {
                                 AppSvgImages.help_ic,
                                 width: getProportionateScreenWidth(45),
                                 height: getProportionateScreenHeight(45),
+                                color: AppColors.primaryColor,
                               ),
                               title: Text(
                                 'help'.tr(),

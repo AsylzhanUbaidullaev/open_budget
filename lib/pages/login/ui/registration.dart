@@ -95,12 +95,12 @@ class Registration extends StatelessWidget {
                                     onChanged: (String value) {
                                       // model.checkPassword(value);
                                     },
-                                    inputFormatters: [
-                                      MaskTextInputFormatter(
-                                          mask: '(###) ###-##-##',
-                                          filter: {"#": RegExp(r'[0-9]')}),
-                                    ],
-                                    keyboardType: TextInputType.visiblePassword,
+                                    // inputFormatters: [
+                                    //   MaskTextInputFormatter(
+                                    //       mask: '(###) ###-##-##',
+                                    //       filter: {"#": RegExp(r'[0-9]')}),
+                                    // ],
+                                    keyboardType: TextInputType.text,
                                     obscureText: false,
                                     cursorColor: AppColors.systemBlackColor,
                                     decoration: const InputDecoration(
@@ -125,7 +125,7 @@ class Registration extends StatelessWidget {
                                     onChanged: (String value) {
                                       // model.checkPassword(value);
                                     },
-                                    keyboardType: TextInputType.visiblePassword,
+                                    keyboardType: TextInputType.text,
                                     obscureText: false,
                                     cursorColor: AppColors.systemBlackColor,
                                     decoration: const InputDecoration(
@@ -150,7 +150,7 @@ class Registration extends StatelessWidget {
                                     onChanged: (String value) {
                                       // model.checkPassword(value);
                                     },
-                                    keyboardType: TextInputType.visiblePassword,
+                                    keyboardType: TextInputType.text,
                                     obscureText: false,
                                     cursorColor: AppColors.systemBlackColor,
                                     decoration: const InputDecoration(

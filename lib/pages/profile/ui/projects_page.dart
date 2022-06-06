@@ -63,11 +63,11 @@ class ProjectsPage extends StatelessWidget {
                 ],
               ),
             ),
-            body: const TabBarView(
+            body: TabBarView(
               physics: BouncingScrollPhysics(),
               children: [
-                VotedProjects(),
-                MyProjects(),
+                VotedProjects(provider: model),
+                MyProjects(provider: model),
               ],
             ),
           ),
